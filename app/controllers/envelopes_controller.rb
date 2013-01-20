@@ -1,0 +1,2 @@
+class EnvelopesController < ApplicationController
+end
