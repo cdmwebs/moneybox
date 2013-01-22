@@ -1,0 +1,9 @@
+<h3>Accounts</h3>
+<ul>
+<% @accounts.each do |account| %>
+  <%= content_tag :li do %>
+    <%= account.name %>
+    <%= content_tag :span, account.balance.format, class: "badge badge-success #{'badge-important' if account.balance_cents < 0}" %>
+  <% end %>
+<% end %>
+</ul>

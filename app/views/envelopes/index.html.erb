@@ -1,0 +1,9 @@
+<h3>Envelopes</h3>
+<ul>
+<% @envelopes.each do |envelope| %>
+  <%= content_tag :li do %>
+    <%= envelope.name %>
+    <%= content_tag :span, envelope.balance.format, class: 'badge badge-success' %>
+  <% end %>
+<% end %>
+</ul>
