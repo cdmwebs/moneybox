@@ -3,7 +3,7 @@
 <% @envelopes.each do |envelope| %>
   <%= content_tag :li do %>
     <%= envelope.name %>
-    <%= content_tag :span, envelope.balance.format, class: 'badge badge-success' %>
+    <%= content_tag :span, envelope.balance.format, class: "badge #{envelope.badge_style}" %>
   <% end %>
 <% end %>
 </ul>

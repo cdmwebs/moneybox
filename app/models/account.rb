@@ -16,4 +16,12 @@ class Account < ActiveRecord::Base
 
   alias_attribute :to_s, :name
 
+
+  ###---------------------------------------------------- Instance Methods
+
+  def badge_style
+    balance.to_f < 0 ? 'badge-important' : 'badge-success'
+  end
+
+
 end

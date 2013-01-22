@@ -18,4 +18,8 @@ class Envelope < ActiveRecord::Base
 
   ###---------------------------------------------------- Instance Methods
 
+  def badge_style
+    balance.to_f < 0 ? 'badge-important' : 'badge-success'
+  end
+
 end

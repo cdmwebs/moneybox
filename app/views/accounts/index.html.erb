@@ -3,7 +3,7 @@
 <% @accounts.each do |account| %>
   <%= content_tag :li do %>
     <%= account.name %>
-    <%= content_tag :span, account.balance.format, class: "badge badge-success #{'badge-important' if account.balance_cents < 0}" %>
+    <%= content_tag :span, account.balance.format, class: "badge #{account.badge_style}" %>
   <% end %>
 <% end %>
 </ul>
