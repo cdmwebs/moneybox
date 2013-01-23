@@ -2,7 +2,7 @@
 <ul>
 <% @envelopes.each do |envelope| %>
   <%= content_tag :li do %>
-    <%= envelope.name %>
+    <%= link_to envelope.name, envelope_transactions_path(envelope.id) %>
     <%= content_tag :span, envelope.balance.format, class: "badge #{envelope.badge_style}" %>
   <% end %>
 <% end %>

@@ -1,9 +1,7 @@
 Moneybox::Application.routes.draw do
 
   resources :envelopes, :accounts do
-    member do
-      resources :transactions
-    end
+    resources :transactions
   end
 
   resources :transactions, :envelopes, :accounts
