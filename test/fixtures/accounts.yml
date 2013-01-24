@@ -1,0 +1,9 @@
+checking:
+  name: checking
+  balance_cents: 50000
+saving:
+  name: savings
+  balance_cents: 200000
+credit card:
+  name: credit card
+  balance_cents: -15000

@@ -1,23 +1,11 @@
-<div class="row-fluid">
-  <div class="span2 well">
-    <h2>Balances</h2>
-    <%= render template: 'accounts/index' %>
-    <%= render template: 'envelopes/index' %>
-  </div>
-  <div class="span7 well">
-    <h2>Transactions</h2>
-    <table class="table table-striped">
-      <tr>
-        <th>Date</th>
-        <th>Payee</th>
-        <th>Amount</th>
-        <th>Account</th>
-        <th>Envelope</th>
-      </tr>
-      <%= render @transactions %>
-    </table>
-  </div>
-  <div class="span3 well">
-    <h2>Inspector</h2>
-  </div>
-</div>
+<h2>Transactions</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Date</th>
+    <th>Payee</th>
+    <th>Amount</th>
+    <th>Account</th>
+    <th>Envelope</th>
+  </tr>
+  <%= render @transactions %>
+</table>

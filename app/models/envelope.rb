@@ -16,6 +16,11 @@ class Envelope < ActiveRecord::Base
 
   alias_attribute :to_s, :name
 
+  ###---------------------------------------------------- Validations
+
+  validates_presence_of :name
+
+
   ###---------------------------------------------------- Instance Methods
 
   def badge_style

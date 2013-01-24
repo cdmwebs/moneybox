@@ -1,10 +1,9 @@
 class TransactionsController < ApplicationController
 
+  before_filter :set_collections
+
   def index
     @transactions = current_transactions
-    @envelopes = Envelope.all
-    @accounts = Account.all
-    logger.debug @transactions.inspect
   end
 
   private
@@ -21,6 +20,15 @@ class TransactionsController < ApplicationController
           Transaction.all
         end
       end
+    end
+
+  protected
+
+    helper_method :set_collections
+
+    def set_collections
+      @envelopes = Envelope.all
+      @accounts = Account.all
     end
 
 

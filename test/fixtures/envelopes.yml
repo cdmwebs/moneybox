@@ -1,0 +1,9 @@
+mortgage:
+  name: mortgage
+  balance_cents: 10000
+groceries:
+  name: groceries
+  balance_cents: 5000
+dining:
+  name: dining
+  balance_cents: 3500
