@@ -2,19 +2,20 @@ require 'test_helper'
 
 class TransactionTest < ActionDispatch::IntegrationTest
 
-  fixtures :all
-
   context 'a visitor viewing the transactions page' do
     
     setup do
+      @envelope = FactoryGirl.create :envelope
+      @account = FactoryGirl.create :account
+      @transaction = FactoryGirl.create( :transaction, envelope: @envelope, account: @account)
       visit transactions_path
     end
 
     should 'see a list of transactions' do
-      first = transactions(:first).find
-      assert page.has_content? first.name
-      assert page.has_content? first.amount
-      assert page.has_content? first.envelope.name
+      assert page.has_content? @transaction.payee
+      assert page.has_content? @transaction.amount.to_s
+      assert page.has_content? @transaction.envelope.name
+      assert page.has_content? @transaction.account.name
     end
 
   end

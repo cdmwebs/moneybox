@@ -21,6 +21,7 @@ group :assets do
 end
 
 group :test do
+  gem 'factory_girl_rails'
   gem 'minitest'
   gem 'turn', '0.9.3'
   gem 'shoulda'
