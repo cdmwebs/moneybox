@@ -16,6 +16,10 @@ class Account < ActiveRecord::Base
 
   alias_attribute :to_s, :name
 
+  ###---------------------------------------------------- Validations
+
+  validates :name, presence: true, uniqueness: true
+  validates :balance, numericality: true
 
   ###---------------------------------------------------- Instance Methods
 

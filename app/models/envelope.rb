@@ -18,8 +18,8 @@ class Envelope < ActiveRecord::Base
 
   ###---------------------------------------------------- Validations
 
-  validates_presence_of :name
-
+  validates :name, presence: true, uniqueness: true
+  validates :balance, numericality: true
 
   ###---------------------------------------------------- Instance Methods
 

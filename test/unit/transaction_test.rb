@@ -12,6 +12,21 @@ class TransactionTest < ActiveSupport::TestCase
     @initial_envelope_balance = @envelope.balance
   end
 
+  should 'require a payee' do
+    transaction = FactoryGirl.build( :transaction, payee: nil)
+    assert_equal false, transaction.valid?
+  end
+
+  should 'require a numeric amount' do
+    transaction = FactoryGirl.build( :transaction, amount: 'zero')
+    assert_equal false, transaction.valid?
+  end
+
+  should 'require a non-zero amount' do
+    transaction = FactoryGirl.build( :transaction, amount: 0)
+    assert_equal false, transaction.valid?
+  end
+
   should 'update account and envelope balances after save' do
     transaction = Transaction.create payee: 'Grocery Store', amount: -36.50, account: @account, envelope: @envelope
     @account.reload

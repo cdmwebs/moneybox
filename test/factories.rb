@@ -11,7 +11,7 @@ FactoryGirl.define do
   end
 
   factory :transaction do
-    payee 'Kroger'
+    payee 'Payee'
     amount -3572
   end
 

@@ -16,7 +16,12 @@ class Transaction < ActiveRecord::Base
 
   # ------------------------------------------- Accessors
 
-  attr_accessible :name, :amount, :payee, :account, :envelope
+  attr_accessible :amount, :payee, :account, :envelope
+
+  # ------------------------------------------- Validations
+
+  validates :payee, presence: true
+  validates :amount, numericality: true, exclusion: { in: [0] }
 
   # ------------------------------------------- Instance Methods
   protected
