@@ -1,9 +1,11 @@
 <h3>Envelopes</h3>
-<ul>
+<ul class="nav nav-list">
 <% @envelopes.each do |envelope| %>
   <%= content_tag :li do %>
-    <%= link_to envelope.name, envelope_transactions_path(envelope.id) %>
-    <%= content_tag :span, envelope.balance.format, class: "badge #{envelope.badge_style}" %>
+    <%= link_to envelope_transactions_path(envelope.id) do %>
+      <%= envelope.name %>
+      <%= content_tag :span, envelope.balance.format, class: "badge #{envelope.badge_style}" %>
+    <% end %>
   <% end %>
 <% end %>
 </ul>
