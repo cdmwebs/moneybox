@@ -24,13 +24,4 @@ class EnvelopesController < ApplicationController
     end
   end
 
-  protected
-
-    helper_method :set_collections
-
-    def set_collections
-      @envelopes = Envelope.all
-      @accounts = Account.all
-    end
-
 end
