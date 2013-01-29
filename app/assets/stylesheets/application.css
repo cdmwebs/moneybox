@@ -14,4 +14,4 @@
  */
 
 a.btn { text-transform: capitalize; }
-a.new-transaction{ float: right; margin-top: 12px; }
+a.new-transaction, .balance-list .btn{ float: right; margin-top: 12px; }
