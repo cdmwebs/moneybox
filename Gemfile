@@ -7,6 +7,7 @@ gem 'json'
 gem 'jquery-rails'
 gem 'money-rails'
 gem 'simple_form'
+gem 'jquery_datepicker'
 
 #-------------- Database
 

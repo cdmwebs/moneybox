@@ -45,6 +45,39 @@ class TransactionTest < ActionDispatch::IntegrationTest
       assert_equal new_account_path, page.current_path
     end
 
+    should 'see a link to create a new transaction' do
+      assert page.has_link? 'new transaction'
+      click_link 'new transaction'
+      assert_equal new_transaction_path, page.current_path
+    end
+
+    should 'be able to create a new transaction' do
+      click_link 'new transaction'
+      fill_in 'transaction_created_at', with: Time.now.to_date
+      fill_in 'Payee', with: 'New Payee'
+      fill_in 'Amount', with: 55.55
+      select @envelope.name, from: 'Envelope'
+      select @account.name, from: 'Account'
+      click_button 'Create Transaction'
+      assert_equal root_path, page.current_path
+      within '.span6' do
+        assert page.has_content?('transaction created')
+        assert page.has_content?('New Payee')
+        assert page.has_content?('55.55')
+        assert page.has_content?(@envelope.name)
+        assert page.has_content?(@account.name)
+      end
+    end
+
+    should 'see errors for an invalid transaction' do
+      click_link 'new transaction'
+      fill_in 'transaction_created_at', with: Time.now.to_date
+      fill_in 'Amount', with: 55.55
+      click_button 'Create Transaction'
+      assert page.has_css? '.error'
+    end
+
+
   end
 
 

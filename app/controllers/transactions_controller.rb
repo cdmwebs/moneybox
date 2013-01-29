@@ -6,6 +6,22 @@ class TransactionsController < ApplicationController
     @transactions = current_transactions
   end
 
+  def new
+    @transaction = Transaction.new
+  end
+
+  def create
+    @transaction = Transaction.create params[:transaction]
+    if @transaction.valid?
+      flash[:success] = "&ldquo;#{@transaction.payee}&rdquo; transaction created"
+      redirect_to root_path
+    else
+      flash[:error] = "Please see errors, below"
+      render 'new'
+    end
+  end
+
+
   private
 
     helper_method :current_transactions

@@ -1,0 +1,8 @@
+<%= simple_form_for @transaction do |f| %>
+  <%= f.datepicker :created_at %>
+  <%= f.input :payee %>
+  <%= f.input :amount %>
+  <%= f.association :envelope %>
+  <%= f.association :account %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>

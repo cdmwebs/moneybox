@@ -12,3 +12,6 @@
  *= require_self
  *= require_tree .
  */
+
+a.btn { text-transform: capitalize; }
+a.new-transaction{ float: right; margin-top: 12px; }

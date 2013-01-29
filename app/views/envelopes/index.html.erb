@@ -4,7 +4,7 @@
   <%= content_tag :li do %>
     <%= link_to envelope_transactions_path(envelope.id) do %>
       <%= envelope.name %>
-      <%= content_tag :span, envelope.balance.format, class: "badge #{envelope.badge_style}" %>
+      <%= content_tag :span, envelope.balance.format, class: "balance badge #{envelope.badge_style}" %>
     <% end %>
   <% end %>
 <% end %>
