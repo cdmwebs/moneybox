@@ -77,6 +77,20 @@ class TransactionTest < ActionDispatch::IntegrationTest
       assert page.has_css? '.error'
     end
 
+    should 'be able to edit a transaction' do
+      find("#edit-transaction-#{@transaction.id}").click
+      fill_in 'Payee', with: 'Edited Payee'
+      fill_in 'Amount', with: 66.66
+      click_button 'Update Transaction'
+      assert_equal root_path, page.current_path
+      within '.span6' do
+        assert page.has_content?('transaction updated')
+        assert page.has_content?('Edited Payee')
+        assert page.has_content?('66.66')
+        assert page.has_content?(@envelope.name)
+        assert page.has_content?(@account.name)
+      end
+    end
 
   end
 
