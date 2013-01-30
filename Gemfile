@@ -25,6 +25,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'unicorn'
 end
 
 group :test do
@@ -45,3 +46,4 @@ group :test do
   gem 'database_cleaner'
   gem 'simplecov', :require => false
 end
+gem 'unicorn'
