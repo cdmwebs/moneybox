@@ -37,7 +37,7 @@ class TransactionTest < ActiveSupport::TestCase
 
   should 'update account and envelope balances after update' do
     transaction = Transaction.create payee: 'Grocery Store', amount: -36.50, account: @account, envelope: @envelope
-    transaction.update_attribute :amount, -26.50
+    transaction.update_attribute :amount, -12.00
     @account.reload
     @envelope.reload
     assert_equal @initial_account_balance + transaction.amount, @account.balance, 'account not updated'
