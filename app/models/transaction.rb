@@ -2,7 +2,9 @@ class Transaction < ActiveRecord::Base
 
   # ------------------------------------------- Callbacks
 
-  after_save :update_balances
+  after_create :update_balances
+  before_update :subtract_old_balances
+  after_update :update_balances
   before_destroy :rollback_balances
 
   # ------------------------------------------- Associations
@@ -34,6 +36,13 @@ class Transaction < ActiveRecord::Base
       modifier = direction == 'down' ? -self.amount : self.amount
       [self.account, self.envelope].each do |object|
         object.balance += modifier
+        object.save
+      end
+    end
+
+    def subtract_old_balances
+      [account, envelope].each do |object|
+        object.balance_cents -= amount_cents_was
         object.save
       end
     end

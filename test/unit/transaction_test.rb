@@ -27,8 +27,17 @@ class TransactionTest < ActiveSupport::TestCase
     assert_equal false, transaction.valid?
   end
 
-  should 'update account and envelope balances after save' do
+  should 'update account and envelope balances after create' do
     transaction = Transaction.create payee: 'Grocery Store', amount: -36.50, account: @account, envelope: @envelope
+    @account.reload
+    @envelope.reload
+    assert_equal @initial_account_balance + transaction.amount, @account.balance, 'account not updated'
+    assert_equal @initial_envelope_balance + transaction.amount, @envelope.balance, 'envelope not updated'
+  end
+
+  should 'update account and envelope balances after update' do
+    transaction = Transaction.create payee: 'Grocery Store', amount: -36.50, account: @account, envelope: @envelope
+    transaction.update_attribute :amount, -26.50
     @account.reload
     @envelope.reload
     assert_equal @initial_account_balance + transaction.amount, @account.balance, 'account not updated'
