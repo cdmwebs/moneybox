@@ -10,6 +10,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find params[:id]
   end
 
+
   def update
     @transaction = Transaction.find params[:id]
     @transaction.update_attributes params[:transaction]

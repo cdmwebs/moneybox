@@ -20,6 +20,16 @@ class AccountTest < ActionDispatch::IntegrationTest
       assert_equal num_records + 1, Account.count
     end
 
+    should 'be able to edit an account' do
+      click_link @account.name
+      fill_in 'Name', with: 'Updated Test Account'
+      fill_in 'Balance', with: '10'
+      click_button 'Update Account'
+      @account.reload
+      assert_equal 'Updated Test Account', @account.name
+      assert_equal '10.00', @account.balance.to_s
+    end
+
     should 'see errors attempting to create an invalid account' do
       num_records = Account.count
       click_link 'new account'

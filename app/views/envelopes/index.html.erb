@@ -3,7 +3,7 @@
 <ul class="nav nav-list">
 <% @envelopes.each do |envelope| %>
   <%= content_tag :li do %>
-    <%= link_to envelope_transactions_path(envelope.id) do %>
+    <%= link_to edit_envelope_path(envelope.id) do %>
       <%= envelope.name %>
       <%= content_tag :span, envelope.balance.format, class: "balance badge #{envelope.badge_style}" %>
     <% end %>

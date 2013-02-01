@@ -23,14 +23,14 @@ class TransactionTest < ActionDispatch::IntegrationTest
       assert page.has_link? @envelope.name
       assert page.has_content? @envelope.balance.format
       click_link @envelope.name
-      assert_equal envelope_transactions_path(@envelope), page.current_path
+      assert_equal edit_envelope_path(@envelope), page.current_path
     end
 
-    should 'see a list of accounts' do
+    should 'see a list of linked accounts' do
       assert page.has_link? @account.name
       assert page.has_content? @account.balance.format
       click_link @account.name
-      assert_equal account_transactions_path(@account), page.current_path
+      assert_equal edit_account_path(@account), page.current_path
     end
 
     should 'see a link to create a new envelope' do

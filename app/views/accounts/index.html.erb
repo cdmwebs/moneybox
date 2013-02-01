@@ -3,7 +3,7 @@
 <ul class="nav nav-list">
 <% @accounts.each do |account| %>
   <%= content_tag :li do %>
-    <%= link_to account_transactions_path(account.id) do %>
+    <%= link_to edit_account_path(account.id) do %>
       <%= account.name %>
       <%= content_tag :span, account.balance.format, class: "badge #{account.badge_style}" %>
     <% end %>

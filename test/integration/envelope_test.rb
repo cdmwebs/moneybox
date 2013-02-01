@@ -20,6 +20,16 @@ class EnvelopeTest < ActionDispatch::IntegrationTest
       assert_equal num_records + 1, Envelope.count
     end
 
+    should 'be able to edit an envelope' do
+      click_link @envelope.name
+      fill_in 'Name', with: 'Updated Test Envelope'
+      fill_in 'Balance', with: '10'
+      click_button 'Update Envelope'
+      @envelope.reload
+      assert_equal 'Updated Test Envelope', @envelope.name
+      assert_equal '10.00', @envelope.balance.to_s
+    end
+
     should 'see errors attempting to create an invalid envelope' do
       num_records = Envelope.count
       click_link 'new envelope'
