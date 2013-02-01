@@ -40,6 +40,12 @@ class AccountTest < ActionDispatch::IntegrationTest
       assert page.has_css? '.error'
     end
 
+    should 'see delete links next to each account' do
+      within "#account-#{@account.id}" do
+        assert page.has_css? 'a.delete-link'
+      end
+    end
+
   end
 
 

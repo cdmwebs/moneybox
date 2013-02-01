@@ -40,6 +40,12 @@ class EnvelopeTest < ActionDispatch::IntegrationTest
       assert page.has_css? '.error'
     end
 
+    should 'see delete links next to each envelope' do
+      within "#envelope-#{@envelope.id}" do
+        assert page.has_css? 'a.delete-link'
+      end
+    end
+
   end
 
 

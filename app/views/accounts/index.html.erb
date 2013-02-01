@@ -2,7 +2,10 @@
 <h3>Accounts</h3>
 <ul class="nav nav-list">
 <% @accounts.each do |account| %>
-  <%= content_tag :li do %>
+  <%= content_tag :li, id: "account-#{account.id}" do %>
+    <%= link_to account_path(account.id), confirm: 'Are you sure?', method: :delete, class: 'delete-link' do %>
+      <i class="icon-remove"></i>
+    <% end %>
     <%= link_to edit_account_path(account.id) do %>
       <%= account.name %>
       <%= content_tag :span, account.balance.format, class: "badge #{account.badge_style}" %>
