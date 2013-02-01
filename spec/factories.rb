@@ -13,6 +13,8 @@ FactoryGirl.define do
   factory :transaction do
     payee 'Payee'
     amount -3572
+    envelope
+    account
   end
 
 end

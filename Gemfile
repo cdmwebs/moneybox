@@ -21,6 +21,8 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.2.2.0'
 end
 
+gem "rspec-rails", :group => [:test, :development]
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -30,20 +32,8 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'minitest'
-  gem 'turn', '0.9.3'
-  gem 'shoulda'
   gem 'capybara'
-  gem 'poltergeist'
-  gem 'launchy'
-  gem 'spin'
-  gem 'guard', '~> 1.5.0'
-  gem 'guard-spin'
-  gem 'rb-inotify', :require => false
+  gem "guard-rspec"
   gem 'rb-fsevent', :require => false
-  gem 'rb-fchange', :require => false
-  gem 'rb-readline'
   gem 'database_cleaner'
-  gem 'simplecov', :require => false
 end
-gem 'unicorn'
