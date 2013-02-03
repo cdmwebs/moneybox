@@ -7,6 +7,7 @@ describe Transaction do
     @envelope = FactoryGirl.create( :envelope )
     @initial_account_balance = @account.balance
     @initial_envelope_balance = @envelope.balance
+    @transaction = FactoryGirl.create( :transaction, amount: -10, account: @account, envelope: @envelope )
   end
 
   it 'requires a payee' do
@@ -24,24 +25,33 @@ describe Transaction do
     transaction.should_not be_valid
   end
 
-  it 'updates account and envelope balances after create' do
-    transaction = FactoryGirl.create( :transaction, amount: -10, account: @account, envelope: @envelope )
-    @account.balance.should eq(@initial_account_balance + transaction.amount)
-    @envelope.balance.should eq(@initial_envelope_balance + transaction.amount)
-  end
+  describe 'updates account and envelope balances' do
 
-  it 'updates account and envelope balances after update' do
-    transaction = FactoryGirl.create( :transaction, amount: -10, account: @account, envelope: @envelope )
-    transaction.update_attribute :amount, -12.00
-    @account.balance.should eq(@initial_account_balance + transaction.amount)
-    @envelope.balance.should eq(@initial_envelope_balance + transaction.amount)
-  end
+    it 'after create' do
+      @account.balance.should eq(@initial_account_balance + @transaction.amount)
+      @envelope.balance.should eq(@initial_envelope_balance + @transaction.amount)
+    end
 
-  it 'updates account and envelope balances after destroy' do
-    transaction = FactoryGirl.create( :transaction, amount: -10, account: @account, envelope: @envelope )
-    transaction.destroy
-    @account.balance.should eq(@initial_account_balance)
-    @envelope.balance.should eq(@initial_envelope_balance)
+    it 'after updating amount' do
+      @transaction.update_attribute :amount, -12.00
+      @account.balance.should eq(@initial_account_balance + @transaction.amount)
+      @envelope.balance.should eq(@initial_envelope_balance + @transaction.amount)
+    end
+
+    it 'after updating association' do
+      @account2 = FactoryGirl.create( :account )
+      @envelope2 = FactoryGirl.create( :envelope )
+      @transaction.update_attributes(account: @account2, envelope: @envelope2)
+      @account.balance.should eq(@initial_account_balance)
+      @envelope.balance.should eq(@initial_envelope_balance)
+    end
+
+    it 'after destroy' do
+      @transaction.destroy
+      @account.balance.should eq(@initial_account_balance)
+      @envelope.balance.should eq(@initial_envelope_balance)
+    end
+
   end
 
 end
