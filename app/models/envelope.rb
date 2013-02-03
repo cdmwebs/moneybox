@@ -10,7 +10,7 @@ class Envelope < ActiveRecord::Base
 
   # ------------------------------------------- Accessors
 
-  attr_accessible :name, :balance
+  attr_accessible :name, :balance, :income
 
   ###---------------------------------------------------- Attributes
 
@@ -20,6 +20,10 @@ class Envelope < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :balance, numericality: true
+
+  ###---------------------------------------------------- Scopes
+
+  default_scope order('income DESC')
 
   ###---------------------------------------------------- Instance Methods
 

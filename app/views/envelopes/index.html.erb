@@ -1,6 +1,6 @@
 <%= link_to "new envelope", new_envelope_path, class: 'btn btn-primary' %>
 <h3>Envelopes</h3>
-<ul class="nav nav-list">
+<ul id="envelope-list" class="nav nav-list">
 <% @envelopes.each do |envelope| %>
   <%= content_tag :li, id: "envelope-#{envelope.id}" do %>
     <%= link_to envelope_path(envelope.id), confirm: 'Are you sure?', method: :delete, class: 'delete-link' do %>

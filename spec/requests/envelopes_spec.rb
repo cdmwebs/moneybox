@@ -9,6 +9,14 @@ describe "A visitor" do
     visit transactions_path
   end
 
+  it 'can see income envelopes before expense envelopes' do
+    @income_envelope = FactoryGirl.create :envelope, income: true
+    visit page.current_path
+    within '#envelope-list' do
+      page.all('li').first.should have_content(@income_envelope.name)
+    end
+  end
+
   it 'can create a new envelope' do
     num_records = Envelope.count
     click_link 'new envelope'
@@ -26,6 +34,14 @@ describe "A visitor" do
     @envelope.reload
     @envelope.name.should eq('Updated Test Envelope')
     @envelope.balance.to_s.should eq('10.00')
+  end
+
+  it 'can identify an envelope as an income envelope' do
+    click_link @envelope.name
+    check 'Income'
+    click_button 'Update Envelope'
+    @envelope.reload
+    @envelope.income.should eq(true)
   end
 
   it 'can see errors attempting to create an invalid envelope' do
