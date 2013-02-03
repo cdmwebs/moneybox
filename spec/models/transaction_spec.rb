@@ -34,6 +34,8 @@ describe Transaction do
 
     it 'after updating amount' do
       @transaction.update_attribute :amount, -12.00
+      @account.reload
+      @envelope.reload
       @account.balance.should eq(@initial_account_balance + @transaction.amount)
       @envelope.balance.should eq(@initial_envelope_balance + @transaction.amount)
     end
@@ -42,6 +44,8 @@ describe Transaction do
       @account2 = FactoryGirl.create( :account )
       @envelope2 = FactoryGirl.create( :envelope )
       @transaction.update_attributes(account: @account2, envelope: @envelope2)
+      @account.reload
+      @envelope.reload
       @account.balance.should eq(@initial_account_balance)
       @envelope.balance.should eq(@initial_envelope_balance)
     end

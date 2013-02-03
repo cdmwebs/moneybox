@@ -41,8 +41,11 @@ class Transaction < ActiveRecord::Base
     end
 
     def subtract_old_balances
-      [account, envelope].each do |object|
-        object.balance_cents -= amount_cents_was
+      affected_account = account_id_was != account_id ? Account.find(account_id_was) : account
+      affected_envelope = envelope_id_was != envelope_id ? Envelope.find(envelope_id_was) : envelope
+      adjustment_amount = amount_cents_was != amount_cents ? amount_cents_was : amount_cents
+      [affected_account, affected_envelope].each do |object|
+        object.balance_cents -= adjustment_amount
         object.save
       end
     end
