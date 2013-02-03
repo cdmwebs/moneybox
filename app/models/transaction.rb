@@ -18,7 +18,7 @@ class Transaction < ActiveRecord::Base
 
   # ------------------------------------------- Accessors
 
-  attr_accessible :amount, :payee, :account, :envelope, :account_id, :envelope_id, :created_at
+  attr_accessible :amount, :payee, :account, :envelope, :account_id, :envelope_id, :entry_date
 
   # ------------------------------------------- Validations
 

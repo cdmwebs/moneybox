@@ -50,7 +50,6 @@ describe 'a visitor viewing the transactions page' do
 
   it 'can be able to create a new transaction' do
     click_link 'new transaction'
-    fill_in 'transaction_created_at', with: Time.now.to_date
     fill_in 'Payee', with: 'New Payee'
     fill_in 'Amount', with: 55.55
     select @envelope.name, from: 'Envelope'
@@ -68,7 +67,6 @@ describe 'a visitor viewing the transactions page' do
 
   it 'can see errors for an invalid transaction' do
     click_link 'new transaction'
-    fill_in 'transaction_created_at', with: Time.now.to_date
     fill_in 'Amount', with: 55.55
     click_button 'Create Transaction'
     page.should have_css('.error')
