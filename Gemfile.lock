@@ -91,6 +91,8 @@ GEM
     jquery_datepicker (0.4)
     json (1.7.6)
     kgio (2.8.0)
+    launchy (2.1.2)
+      addressable (~> 2.3)
     libwebsocket (0.1.7.1)
       addressable
       websocket
@@ -217,6 +219,7 @@ DEPENDENCIES
   jquery-rails
   jquery_datepicker
   json
+  launchy
   meta_request
   money-rails
   rails (= 3.2.11)

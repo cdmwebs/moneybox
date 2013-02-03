@@ -1,18 +1,18 @@
 FactoryGirl.define do
 
   factory :envelope do
-    name 'mortgage'
-    balance 35000
+    sequence(:name) { |n| "envelope #{n}" }
+    balance 100
   end
 
   factory :account do
-    name 'checking'
-    balance 50000
+    sequence(:name) { |n| "account #{n}" }
+    balance 100
   end
 
   factory :transaction do
-    payee 'Payee'
-    amount -3572
+    sequence(:payee) { |n| "payee #{n}" }
+    amount -10
     envelope
     account
   end

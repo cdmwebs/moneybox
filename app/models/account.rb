@@ -15,6 +15,7 @@ class Account < ActiveRecord::Base
   ###---------------------------------------------------- Attributes
 
   alias_attribute :to_s, :name
+  alias_attribute :title, :name
 
   ###---------------------------------------------------- Validations
 

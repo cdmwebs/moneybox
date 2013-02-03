@@ -33,6 +33,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'launchy'
   gem "guard-rspec"
   gem 'rb-fsevent', :require => false
   gem 'database_cleaner'

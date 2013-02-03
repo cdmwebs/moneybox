@@ -2,9 +2,12 @@ require 'spec_helper'
 
 describe Transaction do
 
-  let(:account) { Factory(:account) }
-  let(:envelope) { Factory(:envelope) }
-  let(:transaction) { Factory(:transaction) }
+  before :each do
+    @account = FactoryGirl.create( :account )
+    @envelope = FactoryGirl.create( :envelope )
+    @initial_account_balance = @account.balance
+    @initial_envelope_balance = @envelope.balance
+  end
 
   it 'requires a payee' do
     transaction = FactoryGirl.build( :transaction, payee: nil)
@@ -22,28 +25,25 @@ describe Transaction do
   end
 
   it 'updates account and envelope balances after create' do
-    initial_account_balance = account.balance
-    initial_envelope_balance = envelope.balance
-    transaction = FactoryGirl.build payee: 'Grocery Store', amount: -36.50
-    account.balance.should eq(initial_account_balance + transaction.amount)
-    envelope.balance.should eq(initial_envelope_balance + transaction.amount)
+    transaction = FactoryGirl.create( :transaction, amount: -10, account: @account, envelope: @envelope )
+    @account.balance.should eq(@initial_account_balance + transaction.amount)
+    @envelope.balance.should eq(@initial_envelope_balance + transaction.amount)
   end
 
-  # should 'update account and envelope balances after update' do
-  #   transaction = Transaction.create payee: 'Grocery Store', amount: -36.50, account: @account, envelope: @envelope
-  #   transaction.update_attribute :amount, -12.00
-  #   @account.reload
-  #   @envelope.reload
-  #   assert_equal @initial_account_balance + transaction.amount, @account.balance, 'account not updated'
-  #   assert_equal @initial_envelope_balance + transaction.amount, @envelope.balance, 'envelope not updated'
-  # end
+  it 'updates account and envelope balances after update' do
+    transaction = FactoryGirl.create( :transaction, amount: -10, account: @account, envelope: @envelope )
+    transaction.update_attribute :amount, -12.00
+    @account.balance.should eq(@initial_account_balance + transaction.amount)
+    @envelope.balance.should eq(@initial_envelope_balance + transaction.amount)
+  end
 
-  # should 'update account and envelope balances after destroy' do
-  #   transaction = Transaction.create payee: 'Grocery Store', amount: -36.50, account: @account, envelope: @envelope
-  #   transaction.destroy
-  #   @account.reload
-  #   @envelope.reload
-  #   assert_equal @initial_account_balance, @account.balance, 'account not updated'
-  #   assert_equal @initial_envelope_balance, @envelope.balance, 'envelope not updated'
-  #end
+  it 'updates account and envelope balances after destroy' do
+    transaction = FactoryGirl.create( :transaction, amount: -10, account: @account, envelope: @envelope )
+    transaction.destroy
+    @account.balance.should eq(@initial_account_balance)
+    @envelope.balance.should eq(@initial_envelope_balance)
+  end
+
 end
+
+
