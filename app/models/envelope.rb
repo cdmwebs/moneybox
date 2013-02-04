@@ -2,7 +2,7 @@ class Envelope < ActiveRecord::Base
 
   # ------------------------------------------- Associations
 
-  has_many :transactions
+  has_many :transactions, dependent: :restrict
 
   # ------------------------------------------- Plugins
 
