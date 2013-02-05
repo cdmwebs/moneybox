@@ -25,7 +25,7 @@ class Transaction < ActiveRecord::Base
   validates :payee, presence: true
   validates :amount, numericality: true, exclusion: { in: [0] }
 
-  # ------------------------------------------- Instance Methods
+  # ------------------------------------------- Class Methods
   protected
 
     def rollback_balances

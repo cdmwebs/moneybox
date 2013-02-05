@@ -9,12 +9,12 @@ class ApplicationController < ActionController::Base
       @current_transactions ||= begin
         if params[:envelope_id].present? || params[:controller] == 'envelopes' && params[:id].present?
           lookup_param = params[:envelope_id].present? ? params[:envelope_id] : params[:id]
-          Envelope.find(lookup_param).transactions
+          Envelope.find(lookup_param).transactions.order('entry_date DESC')
         elsif params[:account_id].present? || params[:controller] == 'accounts' && params[:id].present?
           lookup_param = params[:account_id].present? ? params[:account_id] : params[:id]
-          Account.find(lookup_param).transactions
+          Account.find(lookup_param).transactions.order('entry_date DESC')
         else
-          Transaction.all
+          Transaction.order('entry_date DESC')
         end
       end
     end
