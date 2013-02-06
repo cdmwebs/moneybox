@@ -12,7 +12,7 @@ Envelope.all.each { |e| e.update_attribute(:balance, 0) }
 account_balances = [
   { name: 'US Bank Credit Card', balance: -1048.31 }, 
   { name: 'US Bank Checking', balance: 5995.87 }, 
-  { name: 'ING Savings', balance: 11251.20 }
+  { name: 'ING Direct', balance: 11251.20 }
 ]
 
 envelope_balances = [
@@ -33,42 +33,9 @@ envelope_balances = [
 ]
 
 account_balances.each do |a|
-  Account.find_by_name(a['name']).update_attribute(:balance, a['balance'])
+  Account.find_by_name(a[:name]).update_attribute(:balance, a[:balance])
 end
 
 envelope_balances.each do |e|
-  Envelope.find_by_name(e['name']).update_attribute(:balance, e['balance'])
+  Envelope.find_by_name(e[:name]).update_attribute(:balance, e[:balance])
 end
-
-# envelopes = Envelope.create([
-#   { name: 'mortgage' }, 
-#   { name: 'dining' }, 
-#   { name: 'groceries' }, 
-#   { name: 'auto' }, 
-#   { name: 'savings' }, 
-#   { name: 'medical' }, 
-#   { name: 'utilities' }, 
-#   { name: 'internet access' }, 
-#   { name: 'cell phone' }, 
-#   { name: 'home maintenance' }, 
-#   { name: 'entertainment' }, 
-#   { name: 'pet care' }, 
-#   { name: 'gifts' }, 
-#   { name: 'salary' }
-# ])
-
-# accounts = Account.create([
-#   { name: 'checking', balance: 3427.26 }, 
-#   { name: 'savings', balance: 11251.20 }, 
-#   { name: 'credit card', balance: -2224.03 }
-# ])
-
-# transactions = Transaction.create([
-#   { payee: 'Kroger', amount: -35.24, account: Account.find_by_name('credit card'), envelope: Envelope.find_by_name('groceries') }, 
-#   { payee: 'Shell', amount: -27.83, account: Account.find_by_name('checking'), envelope: Envelope.find_by_name('auto') }, 
-#   { payee: 'Duke Energy', amount: -54.35, account: Account.find_by_name('checking'), envelope: Envelope.find_by_name('utilities') }, 
-#   { payee: 'US Bank', amount: -100, account: Account.find_by_name('checking'), envelope: Envelope.find_by_name('mortgage') }, 
-#   { payee: 'A Tavola', amount: -65, account: Account.find_by_name('credit card'), envelope: Envelope.find_by_name('dining') }, 
-#   { payee: 'Meijer', amount: -46.35, account: Account.find_by_name('credit card'), envelope: Envelope.find_by_name('groceries') }, 
-#   { payee: 'Walgreens', amount: -10, account: Account.find_by_name('credit card'), envelope: Envelope.find_by_name('medical') }, 
-# ])
