@@ -8,7 +8,7 @@
     <% end %>
     <%= link_to edit_account_path(account.id) do %>
       <%= account.name %>
-      <%= content_tag :span, account.balance.format, class: "badge #{account.badge_style}" %>
+      <%= content_tag :span, account.balance.format, class: "badge #{account.badge_style}" if account.balance? %>
     <% end %>
   <% end %>
 <% end %>

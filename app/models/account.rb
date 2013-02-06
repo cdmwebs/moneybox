@@ -28,5 +28,8 @@ class Account < ActiveRecord::Base
     balance.to_f < 0 ? 'badge-important' : 'badge-success'
   end
 
+  def balance?
+    balance != 0
+  end
 
 end

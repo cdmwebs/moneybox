@@ -8,7 +8,7 @@
     <% end %>
     <%= link_to edit_envelope_path(envelope.id) do %>
       <%= envelope.name %>
-      <%= content_tag :span, envelope.balance.format, class: "balance badge #{envelope.badge_style}" %>
+      <%= content_tag :span, envelope.balance.format, class: "balance badge #{envelope.badge_style}" if envelope.balance? %>
     <% end %>
   <% end %>
 <% end %>
