@@ -42,3 +42,14 @@ RSpec.configure do |config|
   end
 
 end
+
+def browser_sign_in
+  @user = FactoryGirl.build :user
+  password = @user.password
+  @user.save
+  visit root_path
+  page.current_path.should eq(new_user_session_path)
+  fill_in 'Email', with: @user.email
+  fill_in "Password", with: password
+  click_button 'Sign in'
+end

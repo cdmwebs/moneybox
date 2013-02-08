@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
-  
+
+  layout :layout_by_resource
+
+  before_filter :authenticate_user!
+  before_filter :set_collections
+
   private
 
     helper_method :current_transactions, :set_collections
@@ -24,5 +30,13 @@ class ApplicationController < ActionController::Base
       @envelopes = Envelope.all
       @accounts = Account.all
     end
+    def layout_by_resource
+      if devise_controller?
+        'session'
+      else
+        'application'
+      end
+    end
+
 
 end

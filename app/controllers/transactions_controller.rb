@@ -1,7 +1,5 @@
 class TransactionsController < ApplicationController
 
-  before_filter :set_collections
-
   def new
     @transaction = Transaction.new
   end

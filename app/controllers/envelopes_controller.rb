@@ -1,7 +1,5 @@
 class EnvelopesController < ApplicationController
 
-  before_filter :set_collections
-
   def index
   end
 

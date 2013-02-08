@@ -17,4 +17,9 @@ FactoryGirl.define do
     account
   end
 
+  factory :user do
+    sequence(:email) { |n| "user#{n}@mailinator.com" }
+    password 'mostsecurepasswordever'
+  end
+
 end

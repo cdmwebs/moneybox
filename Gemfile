@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'money-rails'
 gem 'simple_form'
 gem 'jquery_datepicker'
+gem 'devise', '2.2.2'
 
 #-------------- Database
 

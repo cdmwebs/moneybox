@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "A visitor" do
 
   before :each do
+    browser_sign_in
     @envelope = FactoryGirl.create :envelope
     @account = FactoryGirl.create :account
     @transaction = FactoryGirl.create( :transaction, envelope: @envelope, account: @account)

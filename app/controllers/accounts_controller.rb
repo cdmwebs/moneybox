@@ -1,7 +1,5 @@
 class AccountsController < ApplicationController
 
-  before_filter :set_collections
-
   def index
     @accounts = Account.all
   end

@@ -9,19 +9,10 @@
 <body>
 <%= render 'nav' %>
 <div class="row-fluid">
-  <div class="span3 well balance-list">
-    <h2>Balances</h2>
-    <%= render template: 'accounts/index' %>
-    <%= render template: 'envelopes/index' %>
-  </div>
-  <div class="span6 well">
+  <div class="span6 well offset3">
     <%= content_tag :div, flash[:success].html_safe, class: 'alert alert-success' if flash[:success].present? %>
     <%= content_tag :div, flash[:error].html_safe, class: 'alert alert-error' if flash[:error].present? %>
     <%= yield %>
-    <%= render template: 'transactions/index' %>
-  </div>
-  <div class="span3 well">
-    <%= yield :inspector%>
   </div>
 </div>
 </body>
