@@ -50,5 +50,7 @@ class Transaction < ActiveRecord::Base
       end
     end
 
+    self.per_page = 20
+
 
 end

@@ -7,7 +7,7 @@ describe 'a visitor viewing the transactions page' do
     @envelope = FactoryGirl.create :envelope
     @account = FactoryGirl.create :account
     @transaction = FactoryGirl.create( :transaction, envelope: @envelope, account: @account)
-    visit transactions_path
+    visit root_path
   end
 
   it 'can see a list of transactions' do
@@ -86,6 +86,15 @@ describe 'a visitor viewing the transactions page' do
       page.should have_content(@envelope.name)
       page.should have_content(@account.name)
     end
+  end
+
+  it 'will see paged transactions with pagination links' do
+    (Transaction.per_page + 3).times do
+      FactoryGirl.create :transaction
+    end
+    visit page.current_path
+    page.should have_css('tr.transaction', count: Transaction.per_page)
+    page.should have_css('.pagination')
   end
 
 end

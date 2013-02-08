@@ -9,6 +9,7 @@ gem 'money-rails'
 gem 'simple_form'
 gem 'jquery_datepicker'
 gem 'devise', '2.2.2'
+gem 'bootstrap-will_paginate'
 
 #-------------- Database
 
