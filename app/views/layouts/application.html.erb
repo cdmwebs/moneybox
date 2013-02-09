@@ -2,26 +2,21 @@
 <html>
 <head>
   <title>Moneybox</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <link href="assets/bootstrap-responsive.css" rel="stylesheet">
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <%= render 'nav' %>
-<div class="row-fluid">
-  <div class="span3 well balance-list">
-    <h2>Balances</h2>
-    <%= render template: 'accounts/index' %>
-    <%= render template: 'envelopes/index' %>
-  </div>
-  <div class="span6 well">
-    <%= content_tag :div, flash[:success].html_safe, class: 'alert alert-success' if flash[:success].present? %>
-    <%= content_tag :div, flash[:error].html_safe, class: 'alert alert-error' if flash[:error].present? %>
-    <%= yield %>
-    <%= render template: 'transactions/index' %>
-  </div>
-  <div class="span3 well">
-    <%= yield :inspector%>
+<div class="container-fluid"
+  <div class="row-fluid">
+    <div class="span12 well">
+      <%= content_tag :div, flash[:success].html_safe, class: 'alert alert-success' if flash[:success].present? %>
+      <%= content_tag :div, flash[:error].html_safe, class: 'alert alert-error' if flash[:error].present? %>
+      <%= yield %>
+    </div>
   </div>
 </div>
 </body>

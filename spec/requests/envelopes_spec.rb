@@ -7,15 +7,13 @@ describe "A visitor" do
     @envelope = FactoryGirl.create :envelope
     @account = FactoryGirl.create :account
     @transaction = FactoryGirl.create( :transaction, envelope: @envelope, account: @account)
-    visit transactions_path
+    visit envelopes_path
   end
 
   it 'can see income envelopes before expense envelopes' do
     @income_envelope = FactoryGirl.create :envelope, income: true
     visit page.current_path
-    within '#envelope-list' do
-      page.all('li').first.should have_content(@income_envelope.name)
-    end
+    page.all('table.envelopes tr')[1].should have_content(@income_envelope.name)
   end
 
   it 'can create a new envelope' do
@@ -28,7 +26,7 @@ describe "A visitor" do
   end
 
   it 'can edit an envelope' do
-    click_link @envelope.name
+    click_link "edit-envelope-#{@envelope.id}"
     fill_in 'Name', with: 'Updated Test Envelope'
     fill_in 'Balance', with: '10'
     click_button 'Update Envelope'
@@ -38,7 +36,7 @@ describe "A visitor" do
   end
 
   it 'can identify an envelope as an income envelope' do
-    click_link @envelope.name
+    click_link "edit-envelope-#{@envelope.id}"
     check 'Income'
     click_button 'Update Envelope'
     @envelope.reload
@@ -56,9 +54,7 @@ describe "A visitor" do
   end
 
   it 'can see delete links next to each envelope' do
-    within "#envelope-#{@envelope.id}" do
-      page.should have_css('a.delete-link')
-    end
+    page.should have_css("#delete-envelope-#{@envelope.id}")
   end
 
 end

@@ -1,0 +1,12 @@
+<tr class="envelope" id="envelope-<%= envelope.id %>">
+  <td><%= envelope.name %></td>
+  <td><%= content_tag :span, envelope.balance.format, class: "balance badge #{envelope.badge_style}" if envelope.balance? %></td>
+  <td class="hidden-phone">
+    <%= link_to edit_envelope_path(envelope), id: "edit-envelope-#{envelope.id}" do %>
+      <i class="icon-edit"></i>
+    <% end %>
+    <%= link_to envelope_path(envelope), id: "delete-envelope-#{envelope.id}", method: :delete, confirm: true do %>
+      <i class="icon-remove"></i>
+    <% end %>
+  </td>
+</tr>

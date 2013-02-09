@@ -7,7 +7,7 @@ describe "A visitor" do
     @envelope = FactoryGirl.create :envelope
     @account = FactoryGirl.create :account
     @transaction = FactoryGirl.create( :transaction, envelope: @envelope, account: @account)
-    visit transactions_path
+    visit accounts_path
   end
 
   it 'can create a new account' do
@@ -20,7 +20,7 @@ describe "A visitor" do
   end
 
   it 'can edit an account' do
-    click_link @account.name
+    click_link "edit-account-#{@account.id}"
     fill_in 'Name', with: 'Updated Test Account'
     fill_in 'Balance', with: '10'
     click_button 'Update Account'
@@ -40,9 +40,7 @@ describe "A visitor" do
   end
 
   it 'can see delete links next to each account' do
-    within "#account-#{@account.id}" do
-      page.should have_css('a.delete-link')
-    end
+    page.should have_css("#delete-account-#{@account.id}")
   end
 
 end

@@ -16,7 +16,7 @@ class TransactionsController < ApplicationController
     @transaction.update_attributes params[:transaction]
     if @transaction.valid?
       flash[:success] = "&ldquo;#{@transaction.payee}&rdquo; transaction updated"
-      redirect_to root_path
+      redirect_to transactions_path
     else
       flash[:error] = "Please see errors, below"
       render 'edit'
@@ -27,7 +27,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.create params[:transaction]
     if @transaction.valid?
       flash[:success] = "&ldquo;#{@transaction.payee}&rdquo; transaction created"
-      redirect_to root_path
+      redirect_to transactions_path
     else
       flash[:error] = "Please see errors, below"
       render 'new'

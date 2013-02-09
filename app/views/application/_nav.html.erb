@@ -1,9 +1,24 @@
-<div class="navbar">
+<div class="navbar navbar-inverse">
   <div class="navbar-inner">
-    <a class="brand" href="<%= root_path %>">Moneybox</a>
-    <ul class="nav">
-      <li><a href="<%= root_path %>">Home</a></li>
-      <li class="pull-right"><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
-    </ul>
+    <div class="container">
+ 
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <i class="icon-tasks icon-white"></i>
+      </a>
+ 
+      <!-- Be sure to leave the brand out there if you want it shown -->
+      <a class="brand" href="#">Moneybox</a>
+ 
+      <!-- Everything you want hidden at 940px or less, place within here -->
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><%= link_to 'Transactions', transactions_path %></li>
+          <li><%= link_to 'Envelopes', envelopes_path %></li>
+          <li><%= link_to 'Accounts', accounts_path %></li>
+        </ul>
+      </div>
+ 
+    </div>
   </div>
 </div>

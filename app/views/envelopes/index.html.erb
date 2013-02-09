@@ -1,15 +1,10 @@
-<%= link_to "new envelope", new_envelope_path, class: 'btn btn-primary' %>
-<h3>Envelopes</h3>
-<ul id="envelope-list" class="nav nav-list">
-<% @envelopes.each do |envelope| %>
-  <%= content_tag :li, id: "envelope-#{envelope.id}" do %>
-    <%= link_to envelope_path(envelope.id), confirm: 'Are you sure?', method: :delete, class: 'delete-link' do %>
-      <i class="icon-remove"></i>
-    <% end %>
-    <%= link_to edit_envelope_path(envelope.id) do %>
-      <%= envelope.name %>
-      <%= content_tag :span, envelope.balance.format, class: "balance badge #{envelope.badge_style}" if envelope.balance? %>
-    <% end %>
-  <% end %>
-<% end %>
-</ul>
+<h2>Envelopes</h2>
+<table class="table table-striped envelopes">
+  <tr>
+    <th>Name</th>
+    <th>Balance</th>
+    <th class="hidden-phone">Actions</th>
+  </tr>
+  <%= render @envelopes %>
+</table>
+<%= link_to 'new envelope', new_envelope_path, class: 'btn btn-primary new-envelope pull-right hidden-phone' %>

@@ -1,15 +1,10 @@
-<%= link_to "new account", new_account_path, class: 'btn btn-primary' %>
-<h3>Accounts</h3>
-<ul class="nav nav-list">
-<% @accounts.each do |account| %>
-  <%= content_tag :li, id: "account-#{account.id}" do %>
-    <%= link_to account_path(account.id), confirm: 'Are you sure?', method: :delete, class: 'delete-link' do %>
-      <i class="icon-remove"></i>
-    <% end %>
-    <%= link_to edit_account_path(account.id) do %>
-      <%= account.name %>
-      <%= content_tag :span, account.balance.format, class: "badge #{account.badge_style}" if account.balance? %>
-    <% end %>
-  <% end %>
-<% end %>
-</ul>
+<h2>Accounts</h2>
+<table class="table table-striped accounts">
+  <tr>
+    <th>Name</th>
+    <th>Balance</th>
+    <th class="hidden-phone">Actions</th>
+  </tr>
+  <%= render @accounts %>
+</table>
+<%= link_to 'new account', new_account_path, class: 'btn btn-primary new-account pull-right hidden-phone' %>
