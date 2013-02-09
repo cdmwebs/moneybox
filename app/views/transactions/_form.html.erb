@@ -1,6 +1,7 @@
 <%= simple_form_for @transaction do |f| %>
   <%= f.datepicker :entry_date %>
   <%= f.input :payee %>
+  <%= select_tag 'withdrawal', options_for_select([['withdrawal','y'],['deposit','n']]) %>
   <%= f.input :amount %>
   <%= f.association :envelope %>
   <%= f.association :account %>

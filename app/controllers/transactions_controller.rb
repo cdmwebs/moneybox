@@ -1,5 +1,7 @@
 class TransactionsController < ApplicationController
 
+  before_filter :check_polarity, only: [:update, :create]
+
   def new
     @transaction = Transaction.new
   end
@@ -31,5 +33,12 @@ class TransactionsController < ApplicationController
       render 'new'
     end
   end
+
+  private
+
+    def check_polarity
+      amount = params[:transaction][:amount].to_f 
+      params[:transaction][:amount] = params[:withdrawal] == 'y' ? 0 - amount.abs : amount.abs
+    end
 
 end

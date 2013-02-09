@@ -49,6 +49,30 @@ describe 'a visitor viewing the transactions page' do
     page.current_path.should eq(new_transaction_path)
   end
 
+  it 'can choose withdrawal for a transaction' do
+    visit new_transaction_path
+    fill_in 'Payee', with: 'New withdrawal'
+    fill_in 'Amount', with: 10
+    select @envelope.name, from: 'Envelope'
+    select @account.name, from: 'Account'
+    select 'withdrawal', from: 'withdrawal'
+    click_button 'Create Transaction'
+    transaction = Transaction.last
+    transaction.amount.to_s.should eq('-10.00')
+  end
+
+  it 'can choose deposit for a transaction' do
+    visit new_transaction_path
+    fill_in 'Payee', with: 'New withdrawal'
+    fill_in 'Amount', with: -10
+    select @envelope.name, from: 'Envelope'
+    select @account.name, from: 'Account'
+    select 'deposit', from: 'withdrawal'
+    click_button 'Create Transaction'
+    transaction = Transaction.last
+    transaction.amount.to_s.should eq('10.00')
+  end
+
   it 'can be able to create a new transaction' do
     click_link 'new transaction'
     fill_in 'Payee', with: 'New Payee'
