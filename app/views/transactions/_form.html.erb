@@ -2,7 +2,7 @@
   <%= f.datepicker :entry_date %>
   <%= f.input :payee %>
   <%= select_tag 'withdrawal', options_for_select([['withdrawal','y'],['deposit','n']]) %>
-  <%= f.input :amount %>
+  <%= f.input :amount, placeholder: '0.00' %>
   <%= f.association :envelope %>
   <%= f.association :account %>
   <%= f.button :submit, class: 'btn btn-primary' %>

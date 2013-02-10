@@ -25,6 +25,11 @@ describe Transaction do
     transaction.should_not be_valid
   end
 
+  it 'defaults entry_date to today' do
+    transaction = FactoryGirl.build( :transaction )
+    transaction.entry_date.should eq(Date.today)
+  end
+
   describe 'updates account and envelope balances' do
 
     it 'after create' do

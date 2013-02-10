@@ -2,6 +2,7 @@ class Transaction < ActiveRecord::Base
 
   # ------------------------------------------- Callbacks
 
+  after_initialize :set_entry_date
   after_create :update_balances
   before_update :subtract_old_balances
   after_update :update_balances
@@ -56,6 +57,10 @@ class Transaction < ActiveRecord::Base
     end
 
     self.per_page = 20
+
+    def set_entry_date
+      self.entry_date ||= Date.today if new_record?
+    end
 
 
 end
