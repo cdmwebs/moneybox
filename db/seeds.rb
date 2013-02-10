@@ -1,5 +1,10 @@
 require 'csv'
 
+User.create([
+  { email: 'warren@hungry-media.com', password: 'm0n3yb0x' }, 
+  { email: 'christa@blackbreadbox.tv', password: 'm0n3yb0x' }, 
+])
+
 CSV.foreach("#{Rails.root}/tmp/data.csv", headers: true) do |row|
   account = Account.find_by_name(row['Account']) || Account.create(name: row['Account']) 
   envelope = Envelope.find_by_name(row['Envelope']) || Envelope.create(name: row['Envelope'])

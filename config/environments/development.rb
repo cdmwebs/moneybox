@@ -14,8 +14,8 @@ Moneybox::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: 'moneybox.dev' }
+  config.action_mailer.raise_delivery_errors = true
+#  config.action_mailer.default_url_options = { host: 'moneybox.dev' }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -35,4 +35,16 @@ Moneybox::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.action_mailer.default_url_options = { :host => 'hm-moneybox.herokuapp.com' }
+  ActionMailer::Base.smtp_settings = {
+    :address        => "smtp.sendgrid.net",
+    :port           => "25",
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => ENV['SENDGRID_DOMAIN']
+  }
+  config.action_mailer.delivery_method = :file
+
 end
