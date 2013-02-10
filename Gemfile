@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
+
 #-------------- Framework
 
 gem 'rails', '3.2.11'
@@ -10,10 +12,7 @@ gem 'simple_form'
 gem 'jquery_datepicker'
 gem 'devise', '2.2.2'
 gem 'bootstrap-will_paginate'
-
-#-------------- Database
-
-gem 'sqlite3'
+gem 'heroku'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
@@ -23,13 +22,14 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.2.2.0'
 end
 
+
 gem "rspec-rails", :group => [:test, :development]
+gem 'sqlite3', :group => [:test, :development]
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'unicorn'
 end
 
 group :test do
@@ -39,4 +39,9 @@ group :test do
   gem "guard-rspec"
   gem 'rb-fsevent', :require => false
   gem 'database_cleaner'
+end
+
+group :production do
+  gem 'thin'
+  gem 'pg'
 end
