@@ -10,12 +10,9 @@
  *
  *= require font-awesome
  *= require bootstrap
+ *= require bootstrap-datepicker
  *= require_self
  *= require_tree .
  */
 
 a.btn { text-transform: capitalize; }
-a.new-transaction, .balance-list .btn{ float: right; margin-top: 12px; }
-a.delete-link { display: inline; float: left; padding: 0; margin: 0; }
-i.icon-plus-sign{ color: #060; }
-i.icon-minus-sign{ color: #600; }

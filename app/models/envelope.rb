@@ -14,7 +14,7 @@ class Envelope < ActiveRecord::Base
 
   ###---------------------------------------------------- Attributes
 
-  alias_attribute :to_s, :name
+  alias_attribute :to_s, :name_and_balance
 
   ###---------------------------------------------------- Validations
 
@@ -36,6 +36,10 @@ class Envelope < ActiveRecord::Base
 
   def balance?
     balance != 0
+  end
+
+  def name_and_balance
+    "#{name} (#{balance.format})"
   end
 
   ###---------------------------------------------------- Class Methods
