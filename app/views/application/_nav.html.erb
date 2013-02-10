@@ -8,7 +8,7 @@
       </a>
  
       <!-- Be sure to leave the brand out there if you want it shown -->
-      <a class="brand" href="#">Moneybox</a>
+      <%= link_to 'Moneybox', root_path, class: 'brand' %>
  
       <!-- Everything you want hidden at 940px or less, place within here -->
       <div class="nav-collapse collapse">
@@ -16,6 +16,7 @@
           <li><%= link_to 'Transactions', transactions_path %></li>
           <li><%= link_to 'Envelopes', envelopes_path %></li>
           <li><%= link_to 'Accounts', accounts_path %></li>
+          <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
         </ul>
       </div>
  
