@@ -6,8 +6,15 @@ Moneybox::Application.routes.draw do
     resources :transactions
   end
 
-  resources :transactions, :envelopes, :accounts
+  resources :envelopes, :accounts
+  resources :transactions do
+    collection do
+      get 'import'
+      post 'import'
+    end
+  end
 
-  root to: 'transactions#new'
+
+  root to: 'envelopes#index'
 
 end

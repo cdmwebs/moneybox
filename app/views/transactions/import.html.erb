@@ -1,0 +1,14 @@
+<h1>Import Transactions (CSV)</h1>
+<%= simple_form_for 'transaction', url: import_transactions_path do |f| %>
+  <%= f.file_field :attachment %>
+  <label class="checkbox">
+    <input type="checkbox" id="replace" name="replace" value='y'> replace existing data?
+  </label>
+  <label class="checkbox">
+    <input type="checkbox" id="reset-accounts" name="reset-accounts" value='y'> zero account balances?
+  </label>
+  <label class="checkbox">
+    <input type="checkbox" id="reset-envelopes" name="reset-envelopes" value='y'> zero envelope balances?
+  </label>
+  <%= f.button :submit, 'Upload', class: 'btn btn-primary' %>
+<% end %>

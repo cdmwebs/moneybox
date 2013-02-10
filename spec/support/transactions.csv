@@ -1,0 +1,6 @@
+date,type,check_num,payee,memo,envelope,account,amount
+"Oct 21, 2011",Withdrawal,,Lookout Joe's,,Dining,US Bank Credit Card,-2.50
+"Oct 21, 2011",Withdrawal,,Ramundo's Pizzeria and Deli,,Dining,US Bank Credit Card,-6.00
+"Oct 21, 2011",Deposit,,Warren and Christa Harrison,,,US Bank Checking,"5,000.00"
+"Oct 22, 2011",Withdrawal,,Ikea Food,,Dining,US Bank Credit Card,-3.25
+"Oct 22, 2011",Withdrawal,,Ikea,,New House,US Bank Credit Card,-239.99

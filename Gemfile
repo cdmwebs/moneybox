@@ -13,6 +13,7 @@ gem 'jquery_datepicker'
 gem 'devise', '2.2.2'
 gem 'bootstrap-will_paginate'
 gem 'heroku'
+gem 'paperclip', '~> 3.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
@@ -20,6 +21,7 @@ group :assets do
   gem 'uglifier',         '>= 1.0.3'
   gem 'compass-rails',    '~> 1.0.3'
   gem 'bootstrap-sass', '~> 2.2.2.0'
+  gem 'font-awesome-rails'
 end
 
 

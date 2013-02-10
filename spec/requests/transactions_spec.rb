@@ -92,3 +92,61 @@ describe 'a visitor viewing the transactions page' do
   end
 
 end
+
+describe 'an admin' do
+
+  describe 'importing transactions' do
+
+    before :each do
+      @transaction = FactoryGirl.create( :transaction)
+      browser_sign_in
+      visit import_transactions_path
+    end
+
+    it 'should be able to append new transactions' do
+      attach_file 'transaction_attachment', "#{Rails.root}/spec/support/transactions.csv"
+      click_button 'Upload'
+      Transaction.count.should eq(6)
+      Transaction.deposits.count.should eq(1)
+      Transaction.withdrawals.count.should eq(5)
+      Envelope.count.should eq(3)
+      Account.count.should eq(3)
+      Envelope.empty.count.should eq(0)
+      Account.empty.count.should eq(0)
+      Envelope.positive.count.should eq(1)
+      Account.positive.count.should eq(2)
+      Envelope.negative.count.should eq(2)
+      Account.negative.count.should eq(1)
+    end
+
+    it 'should be able to replace existing transactions' do
+      attach_file 'transaction_attachment', "#{Rails.root}/spec/support/transactions.csv"
+      check 'replace'
+      click_button 'Upload'
+      Transaction.count.should eq(5)
+      Envelope.count.should eq(2)
+      Account.count.should eq(2)
+      Envelope.empty.count.should eq(0)
+      Account.empty.count.should eq(0)
+    end
+
+    it 'should be able to zero account balances' do
+      attach_file 'transaction_attachment', "#{Rails.root}/spec/support/transactions.csv"
+      check 'reset-accounts'
+      click_button 'Upload'
+      Account.empty.count.should eq(Account.count)
+      Envelope.empty.count.should_not eq(Envelope.count)
+    end
+
+    it 'should be able to zero envelope balances' do
+      attach_file 'transaction_attachment', "#{Rails.root}/spec/support/transactions.csv"
+      check 'reset-envelopes'
+      click_button 'Upload'
+      Account.empty.count.should_not eq(Account.count)
+      Envelope.empty.count.should eq(Envelope.count)
+    end
+
+
+  end
+
+end

@@ -22,6 +22,12 @@ class Account < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :balance, numericality: true
 
+  ###---------------------------------------------------- Scopes
+
+  scope :empty, where('balance_cents = 0')
+  scope :positive, where('balance_cents > 0')
+  scope :negative, where('balance_cents < 0')
+
   ###---------------------------------------------------- Instance Methods
 
   def badge_style

@@ -25,6 +25,11 @@ class Transaction < ActiveRecord::Base
   validates :payee, presence: true
   validates :amount, numericality: true, exclusion: { in: [0] }
 
+  # ------------------------------------------- Scopes
+
+  scope :deposits, where('amount_cents > 0')
+  scope :withdrawals, where('amount_cents < 0')
+
   # ------------------------------------------- Class Methods
   protected
 

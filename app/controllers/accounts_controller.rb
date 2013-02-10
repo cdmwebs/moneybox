@@ -17,7 +17,7 @@ class AccountsController < ApplicationController
     @account.update_attributes params[:account]
     if @account.valid?
       flash[:success] = "&ldquo;#{@account.name}&rdquo; account updated"
-      redirect_to root_path
+      redirect_to accounts_path
     else
       flash[:error] = "Please see errors, below"
       render 'edit'
@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
     @account = Account.create params[:account]
     if @account.valid?
       flash[:success] = "&ldquo;#{@account.name}&rdquo; account created"
-      redirect_to root_path
+      redirect_to accounts_path
     else
       flash[:error] = "Please see errors, below"
       render 'new'

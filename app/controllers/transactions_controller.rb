@@ -34,6 +34,33 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def import
+    require 'csv'
+    if request.post?
+      upload = params[:transaction][:attachment]
+      if upload.content_type == 'text/csv'
+        if params[:replace].present?
+          Transaction.delete_all
+          Account.delete_all
+          Envelope.delete_all
+        end
+        ctr = 0
+        CSV.foreach( upload.tempfile, headers: true ) do |row|
+          account = Account.find_or_create_by_name(row['account'])
+          envelope = Envelope.find_or_create_by_name(row['envelope'])
+          Transaction.create payee: row['payee'], amount: row['amount'], account: account, envelope: envelope, entry_date: row['date']
+          ctr += 1
+        end
+        Account.all.each{ |a| a.update_attribute( :balance, 0) } if params['reset-accounts'].present?
+        Envelope.all.each{ |e| e.update_attribute( :balance, 0) } if params['reset-envelopes'].present?
+        flash[:success] = "#{ctr} transactions created, #{Envelope.count} envelopes created and #{Account.count} accounts created"
+      else
+        flash[:error] = "Incorrect file type"
+      end
+    end
+    render 'import'
+  end
+
   private
 
     def check_polarity

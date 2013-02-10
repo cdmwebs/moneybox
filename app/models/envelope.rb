@@ -24,6 +24,9 @@ class Envelope < ActiveRecord::Base
   ###---------------------------------------------------- Scopes
 
   default_scope order('income DESC')
+  scope :empty, where('balance_cents = 0')
+  scope :positive, where('balance_cents > 0')
+  scope :negative, where('balance_cents < 0')
 
   ###---------------------------------------------------- Instance Methods
 

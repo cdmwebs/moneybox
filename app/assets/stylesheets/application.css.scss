@@ -1,4 +1,5 @@
 @import "bootstrap.css";
+@import "font-awesome";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -16,3 +17,5 @@
 a.btn { text-transform: capitalize; }
 a.new-transaction, .balance-list .btn{ float: right; margin-top: 12px; }
 a.delete-link { display: inline; float: left; padding: 0; margin: 0; }
+i.icon-plus-sign{ color: #060; }
+i.icon-minus-sign{ color: #600; }
