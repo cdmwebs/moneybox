@@ -23,7 +23,7 @@ class Envelope < ActiveRecord::Base
 
   ###---------------------------------------------------- Scopes
 
-  default_scope order('income DESC')
+  scope :income, where('income = ?', true)
   scope :empty, where('balance_cents = 0')
   scope :positive, where('balance_cents > 0')
   scope :negative, where('balance_cents < 0')
@@ -36,6 +36,13 @@ class Envelope < ActiveRecord::Base
 
   def balance?
     balance != 0
+  end
+
+  ###---------------------------------------------------- Class Methods
+  private
+  
+  def self.ordered
+    [self.income, self.negative, self.positive, self.empty].flatten
   end
 
 end

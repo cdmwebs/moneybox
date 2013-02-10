@@ -1,6 +1,7 @@
 class EnvelopesController < ApplicationController
 
   def index
+    @envelopes = Envelope.ordered
   end
 
   def show

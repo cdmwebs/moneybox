@@ -38,4 +38,11 @@ class Account < ActiveRecord::Base
     balance != 0
   end
 
+  ###---------------------------------------------------- Class Methods
+  private
+
+    def self.ordered
+      [self.negative, self.positive, self.empty].flatten
+    end
+
 end

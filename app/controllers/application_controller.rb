@@ -26,10 +26,11 @@ class ApplicationController < ActionController::Base
     end
 
     def set_collections
-      @transactions = current_transactions
-      @envelopes = Envelope.all
-      @accounts = Account.all
+      @transactions ||= current_transactions
+      @envelopes ||= Envelope.ordered
+      @accounts ||= Account.ordered
     end
+
     def layout_by_resource
       if devise_controller?
         'session'
