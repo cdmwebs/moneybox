@@ -49,4 +49,11 @@ class Envelope < ActiveRecord::Base
     [self.income, self.negative, self.positive, self.empty].flatten
   end
 
+  def self.transfer(from, to, value)
+    from.balance_cents -= value * 100
+    from.save
+    to.balance_cents += value * 100
+    to.save
+  end
+
 end

@@ -19,4 +19,17 @@ describe Envelope do
     envelopes[3].should eq(empty_envelope)
   end
 
+  it 'can transfer between envelopes' do
+    envelope1 = FactoryGirl.create :envelope, balance: 50
+    envelope2 = FactoryGirl.create :envelope, balance: 100
+    balance1 = envelope1.balance
+    balance2 = envelope2.balance
+    amount = 25.00
+    Envelope.transfer(envelope2, envelope1, amount)
+    envelope1.reload
+    envelope2.reload
+    envelope1.balance_cents.should eq((balance1 + amount) * 100)
+    envelope2.balance_cents.should eq((balance2 - amount) * 100)
+  end
+
 end
