@@ -91,6 +91,17 @@ describe 'a visitor viewing the transactions page' do
     page.should have_css('.pagination')
   end
 
+  it 'can attach a PDF to a transaction' do
+    click_link 'new transaction'
+    fill_in 'Payee', with: 'New Payee'
+    fill_in 'Amount', with: 55.55
+    select @envelope.name, from: 'Envelope'
+    select @account.name, from: 'Account'
+    attach_file 'transaction_attachment', "#{Rails.root}/spec/support/receipt.pdf"
+    click_button 'Create Transaction'
+    Transaction.last.attachment_file_name.should eq('receipt.pdf')
+  end
+
 end
 
 describe 'an admin' do

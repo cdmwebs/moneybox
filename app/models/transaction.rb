@@ -13,13 +13,14 @@ class Transaction < ActiveRecord::Base
   belongs_to :account
   belongs_to :envelope
 
+  # ------------------------------------------- Accessors
+
+  attr_accessible :amount, :payee, :account, :envelope, :account_id, :envelope_id, :entry_date, :attachment
+
   # ------------------------------------------- Plugins
 
   monetize :amount_cents
-
-  # ------------------------------------------- Accessors
-
-  attr_accessible :amount, :payee, :account, :envelope, :account_id, :envelope_id, :entry_date
+  has_attached_file :attachment
 
   # ------------------------------------------- Validations
 
