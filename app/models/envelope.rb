@@ -24,9 +24,9 @@ class Envelope < ActiveRecord::Base
   ###---------------------------------------------------- Scopes
 
   scope :income, where('income = ?', true)
-  scope :empty, where('balance_cents = 0')
-  scope :positive, where('balance_cents > 0')
-  scope :negative, where('balance_cents < 0')
+  scope :empty, where('balance_cents = 0 and income = ?', false)
+  scope :positive, where('balance_cents > 0 and income = ?', false)
+  scope :negative, where('balance_cents < 0 and income = ?', false)
 
   ###---------------------------------------------------- Instance Methods
 
