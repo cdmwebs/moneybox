@@ -26,6 +26,7 @@ class Transaction < ActiveRecord::Base
 
   validates :payee, presence: true
   validates :amount, numericality: true, exclusion: { in: [0] }
+  validates_attachment :attachment, :content_type => { content_type: "application/pdf" }
 
   # ------------------------------------------- Scopes
 

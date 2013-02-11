@@ -102,6 +102,18 @@ describe 'a visitor viewing the transactions page' do
     Transaction.last.attachment_file_name.should eq('receipt.pdf')
   end
 
+  it 'cannot attach non-PDF files to a transaction' do
+    click_link 'new transaction'
+    fill_in 'Payee', with: 'New Payee'
+    fill_in 'Amount', with: 55.55
+    select @envelope.name, from: 'Envelope'
+    select @account.name, from: 'Account'
+    attach_file 'transaction_attachment', "#{Rails.root}/spec/support/transactions.csv"
+    click_button 'Create Transaction'
+    page.should have_content('Please see errors')
+  end
+
+
 end
 
 describe 'an admin' do
