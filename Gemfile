@@ -4,7 +4,7 @@ ruby '1.9.3'
 
 #-------------- Framework
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 gem 'json'
 gem 'jquery-rails'
 gem 'money-rails'
