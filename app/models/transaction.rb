@@ -43,8 +43,10 @@ class Transaction < ActiveRecord::Base
     def update_balances(direction='up')
       modifier = direction == 'down' ? -self.amount : self.amount
       [self.account, self.envelope].each do |object|
-        object.balance += modifier
-        object.save
+        if object.present?
+          object.balance += modifier
+          object.save
+        end
       end
     end
 

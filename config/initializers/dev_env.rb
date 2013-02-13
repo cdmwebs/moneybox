@@ -1,6 +1,8 @@
-require 'yaml'
-
 unless Rails.env.production?
-  yaml_data = YAML::load(ERB.new(IO.read(File.join(Rails.root, 'config', 'env_vars.yml'))).result)
-  APP_CONFIG = HashWithIndifferentAccess.new(yaml_data)
+  ENV['SENDGRID_USERNAME'] = 'WarrenHarrison'
+  ENV['SENDGRID_PASSWORD'] = '5!3Sstw!afs7A4'
+  ENV['SENDGRID_DOMAIN'] = 'moneybox.dev'
+  ENV['AWS_ACCESS_KEY_ID'] = 'AKIAJ54NTHCZ3C7R2NSQ'
+  ENV['AWS_SECRET_ACCESS_KEY'] = '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'
+  ENV['S3_BUCKET_NAME'] = 'hm-moneybox'
 end
