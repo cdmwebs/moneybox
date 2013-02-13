@@ -13,5 +13,5 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-
-config/initializers/dev_env.rb
+/coverage
+/config/initializers/dev_env.rb
