@@ -33,20 +33,20 @@ describe 'a visitor viewing the transactions page' do
     select @account.name, from: 'Account'
     select 'withdrawal', from: 'withdrawal'
     click_button 'Create Transaction'
-    transaction = Transaction.last
+    transaction = Transaction.find_by_amount_cents(-1000)
     transaction.amount.to_s.should eq('-10.00')
   end
 
   it 'can choose deposit for a transaction' do
     visit new_transaction_path
     fill_in 'Payee', with: 'New withdrawal'
-    fill_in 'Amount', with: -10
+    fill_in 'Amount', with: -20
     select @envelope.name, from: 'Envelope'
     select @account.name, from: 'Account'
     select 'deposit', from: 'withdrawal'
     click_button 'Create Transaction'
-    transaction = Transaction.last
-    transaction.amount.to_s.should eq('10.00')
+    transaction = Transaction.find_by_amount_cents(2000)
+    transaction.amount.to_s.should eq('20.00')
   end
 
   it 'can be able to create a new transaction' do
@@ -95,13 +95,13 @@ describe 'a visitor viewing the transactions page' do
 
   it 'can attach a PDF to a transaction' do
     click_link 'new transaction'
-    fill_in 'Payee', with: 'New Payee'
+    fill_in 'Payee', with: 'Create Attachment Payee'
     fill_in 'Amount', with: 55.55
     select @envelope.name, from: 'Envelope'
     select @account.name, from: 'Account'
     attach_file 'transaction_attachment', "#{Rails.root}/spec/support/receipt.pdf"
     click_button 'Create Transaction'
-    Transaction.last.attachment_file_name.should eq('receipt.pdf')
+    Transaction.find_by_payee('Create Attachment Payee').attachment_file_name.should eq('receipt.pdf')
   end
 
   it 'cannot attach non-PDF files to a transaction' do
@@ -118,6 +118,19 @@ describe 'a visitor viewing the transactions page' do
   it 'can delete a transaction' do
     click_link "delete-transaction-#{@transaction.id}"
     Transaction.all.count.should eq(0)
+  end
+
+  it 'can see an attachment link if attachment present' do
+    click_link 'new transaction'
+    fill_in 'Payee', with: 'Attachment Payee'
+    fill_in 'Amount', with: 55.55
+    select @envelope.name, from: 'Envelope'
+    select @account.name, from: 'Account'
+    attach_file 'transaction_attachment', "#{Rails.root}/spec/support/receipt.pdf"
+    click_button 'Create Transaction'
+    last = Transaction.find_by_payee('Attachment Payee')
+    visit edit_transaction_path(last.id)
+    page.should have_link('view attachment')
   end
 
 

@@ -51,8 +51,8 @@ class Envelope < ActiveRecord::Base
 
   def self.transfer(from, to, value)
     transfer_amount = value.to_f
-    Transaction.create payee: "Transfer from #{from.name}", envelope: from, amount: -transfer_amount
-    Transaction.create payee: "Transfer to #{to.name}", envelope: to, amount: transfer_amount
+    Transaction.create payee: "Transfer to #{to.name}", envelope: from, amount: -transfer_amount
+    Transaction.create payee: "Transfer from #{from.name}", envelope: to, amount: transfer_amount
   end
 
 end

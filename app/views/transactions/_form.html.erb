@@ -1,6 +1,3 @@
-<% if @transaction.attachment_file_name.present? %>
-  <iframe id="attachment" src="<%= @transaction.attachment.url %>" width="300" height="500"></iframe>
-<% end %>
 <%= simple_form_for @transaction do |f| %>
   <%= f.input :entry_date, as: :string, input_html: { class: 'datepicker' } %>
   <%= f.input :payee %>
@@ -9,6 +6,7 @@
   <%= f.association :envelope, collection: Envelope.ordered, label_method: :name_and_balance %>
   <%= f.association :account, collection: Account.ordered %>
   <%= f.input :memo %>
+  <%= link_to 'view attachment', @transaction.attachment.url, target: '_blank' if @transaction.attachment.present? %><br>
   <%= f.file_field :attachment %>
-  <%= f.button :submit, class: 'btn btn-primary' %>
+  <p><%= f.button :submit, class: 'btn btn-primary' %></p>
 <% end %>

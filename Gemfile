@@ -42,6 +42,7 @@ group :test do
   gem "guard-rspec"
   gem 'rb-fsevent', :require => false
   gem 'database_cleaner'
+  gem 'simplecov', :require => false
 end
 
 group :production do
