@@ -15,6 +15,7 @@ describe 'a visitor viewing the transactions page' do
     page.should have_content(@transaction.amount.to_s)
     page.should have_content(@transaction.envelope.name)
     page.should have_content(@transaction.account.name)
+    page.should have_content(@transaction.memo)
   end
 
   it 'can see a link to create a new transaction' do
@@ -27,6 +28,7 @@ describe 'a visitor viewing the transactions page' do
     visit new_transaction_path
     fill_in 'Payee', with: 'New withdrawal'
     fill_in 'Amount', with: 10
+    fill_in 'Memo', with: 'My sample transaction'
     select @envelope.name, from: 'Envelope'
     select @account.name, from: 'Account'
     select 'withdrawal', from: 'withdrawal'

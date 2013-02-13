@@ -15,7 +15,7 @@ class Transaction < ActiveRecord::Base
 
   # ------------------------------------------- Accessors
 
-  attr_accessible :amount, :payee, :account, :envelope, :account_id, :envelope_id, :entry_date, :attachment
+  attr_accessible :amount, :payee, :account, :envelope, :account_id, :envelope_id, :entry_date, :attachment, :memo
 
   # ------------------------------------------- Plugins
 

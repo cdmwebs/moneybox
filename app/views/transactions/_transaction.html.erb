@@ -1,6 +1,7 @@
 <tr class="transaction">
   <td><%= transaction.entry_date.to_date %></td>
-  <td><%= transaction.payee %></td>
+  <td><%= transaction.payee %><br>
+    <small><%= transaction.memo %></small></td>
   <td><%= transaction.amount %></td>
   <td><%= transaction.account %></td>
   <td><%= transaction.envelope %></td>

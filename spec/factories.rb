@@ -15,6 +15,7 @@ FactoryGirl.define do
     amount -10
     envelope
     account
+    memo 'my sample transaction'
   end
 
   factory :user do

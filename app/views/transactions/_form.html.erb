@@ -8,6 +8,7 @@
   <%= f.input :amount, placeholder: '0.00' %>
   <%= f.association :envelope, collection: Envelope.ordered, label_method: :name_and_balance %>
   <%= f.association :account, collection: Account.ordered %>
+  <%= f.input :memo %>
   <%= f.file_field :attachment %>
   <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
