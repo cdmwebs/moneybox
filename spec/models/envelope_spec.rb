@@ -30,6 +30,12 @@ describe Envelope do
     envelope2.reload
     envelope1.balance_cents.should eq(balance_cents1 + amount * 100)
     envelope2.balance_cents.should eq(balance_cents2 - amount * 100)
+    transaction = Transaction.where(envelope_id: envelope1).last
+    transaction.amount.should eq('25.00')
+    transaction.payee.should eq("Transfer from #{envelope2.name}")
+    transaction = Transaction.where(envelope_id: envelope2).last
+    transaction.amount.should eq('-25.00')
+    transaction.payee.should eq("Transfer to #{envelope1.name}")
   end
 
 end

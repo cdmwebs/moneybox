@@ -2,8 +2,8 @@
   <td><%= transaction.entry_date.to_date %></td>
   <td><%= transaction.payee %></td>
   <td><%= transaction.amount %></td>
-  <td><%= transaction.account %></td>
-  <td><%= transaction.envelope %></td>
+  <td><%= transaction.account.name  if transaction.account.present? %></td>
+  <td><%= transaction.envelope.name if transaction.envelope.present? %></td>
   <td>
     <%= link_to edit_transaction_path(transaction), id: "edit-transaction-#{transaction.id}" do %>
       <i class="icon-edit"></i>
