@@ -69,7 +69,7 @@ describe 'a visitor viewing the transactions page' do
     page.should have_css('.error')
   end
 
-  it 'can be able to edit a transaction' do
+  it 'can edit a transaction' do
     find("#edit-transaction-#{@transaction.id}").click
     fill_in 'Payee', with: 'Edited Payee'
     fill_in 'Amount', with: 66.66
@@ -111,6 +111,11 @@ describe 'a visitor viewing the transactions page' do
     attach_file 'transaction_attachment', "#{Rails.root}/spec/support/transactions.csv"
     click_button 'Create Transaction'
     page.should have_content('Please see errors')
+  end
+
+  it 'can delete a transaction' do
+    click_link "delete-transaction-#{@transaction.id}"
+    Transaction.all.count.should eq(0)
   end
 
 

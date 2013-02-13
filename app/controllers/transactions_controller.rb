@@ -34,6 +34,15 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def destroy
+    if Transaction.find(params[:id]).destroy
+      flash[:success] = "Transaction deleted"
+    else
+      flash[:error] = "Could not delete transaction"
+    end
+    render 'index'
+  end
+
   def import
     require 'csv'
     if request.post?
