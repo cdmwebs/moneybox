@@ -57,4 +57,20 @@ describe "A visitor" do
     page.should have_css("#delete-envelope-#{@envelope.id}")
   end
 
+  it 'can transfer money between envelopes' do
+    envelope_from = FactoryGirl.create :envelope, balance: 100
+    from_balance_cents = envelope_from.balance_cents
+    envelope_to = FactoryGirl.create :envelope, balance: 100
+    to_balance_cents = envelope_to.balance_cents
+    visit transfer_envelopes_path
+    fill_in 'amount', with: 10
+    select envelope_from.name, from: 'from'
+    select envelope_to.name, from: 'to'
+    click_button 'Transfer'
+    envelope_from.reload
+    envelope_to.reload
+    envelope_from.balance.to_s.should eq('90.00')
+    envelope_to.balance.to_s.should eq('110.00')
+  end
+
 end

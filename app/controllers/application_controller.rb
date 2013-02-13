@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   before_filter :authenticate_user!
-  before_filter :set_collections
+  before_filter :set_collections, except: [:transfer]
 
   private
 

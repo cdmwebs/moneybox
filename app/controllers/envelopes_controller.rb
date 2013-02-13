@@ -39,4 +39,15 @@ class EnvelopesController < ApplicationController
     end
   end
 
+  def transfer
+    if request.post?
+      envelope_from = Envelope.find(params[:from])
+      envelope_to = Envelope.find(params[:to])
+      Envelope.transfer(envelope_from, envelope_to, params[:amount])
+      flash[:success] = "Transferred #{params[:amount]} from #{envelope_from.name} to #{envelope_to.name}"
+    end
+    render 'transfer'
+
+  end
+
 end
