@@ -1,4 +1,4 @@
-<h1>TransferMoney</h1>
+<h1>Transfer between envelopes</h1>
 <%= form_tag '/envelopes/transfer', method: :post do %>
   <%= text_field_tag :amount, nil, placeholder: '0.00' %><br>
   <%= select_tag :from, options_from_collection_for_select( Envelope.ordered, :id, :name_and_balance ), prompt: 'Transfer from' %><br>
