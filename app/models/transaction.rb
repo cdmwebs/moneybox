@@ -30,6 +30,7 @@ class Transaction < ActiveRecord::Base
 
   # ------------------------------------------- Scopes
 
+  default_scope order("entry_date DESC, id DESC")
   scope :deposits, where('amount_cents > 0')
   scope :withdrawals, where('amount_cents < 0')
 
