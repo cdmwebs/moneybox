@@ -14,6 +14,7 @@ gem 'devise', '2.2.2'
 gem 'bootstrap-will_paginate'
 gem 'heroku'
 gem 'paperclip', '~> 3.0'
+gem 'aws-sdk'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'

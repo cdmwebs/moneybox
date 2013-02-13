@@ -4,9 +4,12 @@ Moneybox::Application.routes.draw do
 
   resources :envelopes, :accounts do
     resources :transactions
+    collection do
+      get 'transfer'
+      post 'transfer'
+    end
   end
 
-  resources :envelopes, :accounts
   resources :transactions do
     collection do
       get 'import'

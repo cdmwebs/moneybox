@@ -74,4 +74,13 @@ Moneybox::Application.configure do
     :password       => ENV['SENDGRID_PASSWORD'],
     :domain         => ENV['SENDGRID_DOMAIN']
   }
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'hm-moneybox',
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
 end
