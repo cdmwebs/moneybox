@@ -1,3 +1,12 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+
+
+  $('#envelope-distribution select#from').change ->
+    recalculate()
+  $('#envelope-distribution input.to').keyup ->
+    recalculate()
+
+
+recalculate = ->
+  # from - sum(to)
+  console.log 'recalc'

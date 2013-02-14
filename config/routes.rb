@@ -7,6 +7,8 @@ Moneybox::Application.routes.draw do
     collection do
       get 'transfer'
       post 'transfer'
+      get 'distribute'
+      post 'distribute'
     end
   end
 

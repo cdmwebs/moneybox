@@ -49,6 +49,10 @@ class Envelope < ActiveRecord::Base
     [self.income, self.negative, self.positive, self.empty].flatten
   end
 
+  def self.expense
+    [self.negative, self.positive, self.empty].flatten
+  end
+
   def self.transfer(from, to, value)
     transfer_amount = value.to_f
     Transaction.create payee: "Transfer to #{to.name}", envelope: from, amount: -transfer_amount

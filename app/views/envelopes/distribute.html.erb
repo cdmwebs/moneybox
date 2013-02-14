@@ -1,0 +1,13 @@
+<h1>Fill envelopes</h1>
+<%= form_tag '/envelopes/distribute', method: :post, id: 'envelope-distribution' do %>
+  <%= select_tag :from, options_from_collection_for_select( Envelope.income, :id, :name_and_balance ), prompt: 'Distribute from' %>
+  <span id="remaining">$0.00</span> remaining
+  <% Envelope.expense.each do |envelope| %>
+    <%= label_tag "amount_#{envelope.id}" do %>
+      <%= text_field_tag "amount[#{envelope.id}]", nil, placeholder: '0.00', data: { origin: envelope.balance_cents }, class: 'to' %>
+      <%= envelope.name %>
+      <%= content_tag :span, envelope.balance.format, id: "balance-#{envelope.id}", class: "balance badge #{envelope.badge_style}" if envelope.balance? %>
+    <% end %>
+  <% end %>
+  <%= submit_tag 'Fill', class: 'btn btn-primary' %>
+<% end %>
