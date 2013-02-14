@@ -38,11 +38,22 @@ class Account < ActiveRecord::Base
     balance != 0
   end
 
+  def name_and_balance
+    "#{name} (#{balance.format})"
+  end
+
   ###---------------------------------------------------- Class Methods
   private
 
     def self.ordered
       [self.negative, self.positive, self.empty].flatten
     end
+
+    def self.transfer(from, to, value)
+      transfer_amount = value.to_f
+      Transaction.create payee: "Transfer to #{to.name}", account: from, amount: -transfer_amount
+      Transaction.create payee: "Transfer from #{from.name}", account: to, amount: transfer_amount
+    end
+
 
 end

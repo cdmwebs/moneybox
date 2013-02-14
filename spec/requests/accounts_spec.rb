@@ -43,4 +43,20 @@ describe "A visitor" do
     page.should have_css("#delete-account-#{@account.id}")
   end
 
+  it 'can transfer money between accounts' do
+    account_from = FactoryGirl.create :account, balance: 100
+    from_balance_cents = account_from.balance_cents
+    account_to = FactoryGirl.create :account, balance: 100
+    to_balance_cents = account_to.balance_cents
+    visit transfer_accounts_path
+    fill_in 'amount', with: 10
+    select account_from.name, from: 'from'
+    select account_to.name, from: 'to'
+    click_button 'Transfer'
+    account_from.reload
+    account_to.reload
+    account_from.balance.to_s.should eq('90.00')
+    account_to.balance.to_s.should eq('110.00')
+  end
+
 end

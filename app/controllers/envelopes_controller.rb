@@ -47,7 +47,6 @@ class EnvelopesController < ApplicationController
       flash[:success] = "Transferred #{params[:amount]} from #{envelope_from.name} to #{envelope_to.name}"
     end
     render 'transfer'
-
   end
 
 end
