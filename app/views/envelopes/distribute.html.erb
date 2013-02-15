@@ -4,7 +4,7 @@
   <span id="remaining">$0.00</span> remaining
   <% Envelope.expense.each do |envelope| %>
     <%= label_tag "amount_#{envelope.id}" do %>
-      <%= text_field_tag "amount[#{envelope.id}]", nil, placeholder: '0.00', data: { origin: envelope.balance_cents }, class: 'to' %>
+      <%= number_field_tag "amount[#{envelope.id}]", nil, placeholder: '0.00', data: { origin: envelope.balance_cents }, class: 'to', step: '0.01' %>
       <%= envelope.name %>
       <%= content_tag :span, envelope.balance.format, id: "balance-#{envelope.id}", class: "balance badge #{envelope.badge_style}" if envelope.balance? %>
     <% end %>

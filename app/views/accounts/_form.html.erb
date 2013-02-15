@@ -1,5 +1,5 @@
 <%= simple_form_for @account do |f| %>
   <%= f.input :name %>
-  <%= f.input :balance %>
+  <%= f.input :balance, as: :numeric, input_html: {step: "0.01"} %>
   <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>

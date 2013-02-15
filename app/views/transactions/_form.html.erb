@@ -2,7 +2,7 @@
   <%= f.input :entry_date, as: :string, input_html: { class: 'datepicker' } %>
   <%= f.input :payee %>
   <%= select_tag 'withdrawal', options_for_select([['withdrawal','y'],['deposit','n']]) %>
-  <%= f.input :amount, placeholder: '0.00' %>
+  <%= f.input :amount, placeholder: '0.00', as: :numeric, input_html: {step: "0.01"} %>
   <%= f.association :envelope, collection: Envelope.ordered, label_method: :name_and_balance %>
   <%= f.association :account, collection: Account.ordered %>
   <%= f.input :memo %>
