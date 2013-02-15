@@ -73,4 +73,19 @@ describe "A visitor" do
     envelope_to.balance.to_s.should eq('110.00')
   end
 
+  it 'can distribute from income to many expense envelopes' do
+    visit distribute_envelopes_path
+    page.should have_selector('#from') do |from|
+      Envelope.income.each do |income|
+        from.should have_selector('option', { value: income.id }) do |option|
+          option.should have_content(income.title)
+        end
+      end
+    end
+    Envelope.expense.each do |expense|
+      page.should have_selector('input', { id: "amount_#{expense.id}"} )
+      page.should have_selector('label'){ |label| label.should have_content expense.title }
+    end
+  end
+
 end
