@@ -74,7 +74,10 @@ describe "A visitor" do
   end
 
   it 'can distribute from income to many expense envelopes' do
-    visit distribute_envelopes_path
+    from_balance = 100
+    envelope_from = FactoryGirl.create :envelope, balance: from_balance, income: true
+    envelopes_to = FactoryGirl.create_list :envelope, 3, balance: -10
+    visit fill_envelopes_path
     page.should have_selector('#from') do |from|
       Envelope.income.each do |income|
         from.should have_selector('option', { value: income.id }) do |option|
@@ -85,6 +88,22 @@ describe "A visitor" do
     Envelope.expense.each do |expense|
       page.should have_selector('input', { id: "amount_#{expense.id}"} )
       page.should have_selector('label'){ |label| label.should have_content expense.title }
+    end
+    select envelope_from.name_and_balance, from: 'from'
+    start_amount = 30
+    envelopes_to.each do |envelope|
+      fill_in "amount_#{envelope.id}", with: start_amount
+      start_amount -= 10
+    end
+    click_button 'Fill'
+    envelope_from.reload
+    envelope_from.balance.to_s.should eq('40.00')
+    start_amount = 30
+    envelopes_to.each do |envelope| 
+      envelope.reload
+      expected = '%.2f' % (-10 + start_amount)
+      envelope.balance.to_s.should eq(expected.to_s)
+      start_amount -= 10
     end
   end
 

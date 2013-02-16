@@ -1,5 +1,5 @@
 <h1>Fill envelopes</h1>
-<%= form_tag '/envelopes/distribute', method: :post, id: 'envelope-distribution' do %>
+<%= form_tag '/envelopes/fill', method: :post, id: 'envelope-distribution' do %>
   <%= select_tag :from, options_with_balance(Envelope.income), prompt: 'Distribute from' %>
   <span id="remaining">$<span class="value">0.00</span> remaining</span> 
   <% Envelope.expense.each do |envelope| %>
