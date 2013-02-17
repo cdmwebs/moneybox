@@ -35,4 +35,14 @@ class AccountsController < ApplicationController
     end
   end
 
+  def transfer
+    if request.post?
+      account_from = Account.find(params[:from])
+      account_to = Account.find(params[:to])
+      Account.transfer(account_from, account_to, params[:amount])
+      flash[:success] = "Transferred #{params[:amount]} from #{account_from.name} to #{account_to.name}"
+    end
+    render 'transfer'
+  end
+
 end

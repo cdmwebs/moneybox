@@ -31,7 +31,7 @@ class Envelope < ActiveRecord::Base
   ###---------------------------------------------------- Instance Methods
 
   def badge_style
-    balance.to_f < 0 ? 'badge-important' : 'badge-success'
+    balance.to_f < 0 ? 'badge-important' : balance.to_f > 0 ? 'badge-success' : ''
   end
 
   def balance?
@@ -47,6 +47,10 @@ class Envelope < ActiveRecord::Base
   
   def self.ordered
     [self.income, self.negative, self.positive, self.empty].flatten
+  end
+
+  def self.expense
+    [self.negative, self.positive, self.empty].flatten
   end
 
   def self.transfer(from, to, value)

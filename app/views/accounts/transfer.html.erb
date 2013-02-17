@@ -1,0 +1,7 @@
+<h1>Transfer between accounts</h1>
+<%= form_tag '/accounts/transfer', method: :post do %>
+  <%= number_field_tag :amount, nil, placeholder: '0.00', step: 0.01 %><br>
+  <%= select_tag :from, options_from_collection_for_select( Account.ordered, :id, :name_and_balance ), prompt: 'Transfer from' %><br>
+  <%= select_tag :to, options_from_collection_for_select( Account.ordered, :id, :name_and_balance ), prompt: 'Transfer to'  %><br>
+  <%= submit_tag 'Transfer', class: 'btn btn-primary' %>
+<% end %>
