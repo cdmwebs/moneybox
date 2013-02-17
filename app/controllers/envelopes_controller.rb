@@ -52,12 +52,15 @@ class EnvelopesController < ApplicationController
   def fill
     if request.post?
       envelope_from = Envelope.find(params[:from])
+      budget = { from: envelope_from.id, amounts: {} }
       idx = 0
       params[:amount].each_pair do |id, amount|
         envelope_to = Envelope.find(id)
         Envelope.transfer(envelope_from, envelope_to, amount)
+        budget[:amounts]["#{envelope_to.id}"] = amount
         idx += 1
       end
+      current_user.settings.budget = budget
       flash[:success] = "Filled #{idx} envelopes from #{envelope_from.name}"
     end
     render 'fill'

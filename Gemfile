@@ -15,6 +15,7 @@ gem 'bootstrap-will_paginate'
 gem 'heroku'
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk'
+gem 'rails-settings-cached'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
