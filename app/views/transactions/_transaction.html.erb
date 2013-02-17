@@ -3,8 +3,8 @@
   <td><%= transaction.payee %><br>
     <small><%= transaction.memo %></small></td>
   <td><%= transaction.amount %></td>
-  <td><%= transaction.account.name  if transaction.account.present? %></td>
-  <td><%= transaction.envelope.name if transaction.envelope.present? %></td>
+  <td><%= link_to transaction.account.name, account_transactions_path(transaction.account.id)  if transaction.account.present? %></td>
+  <td><%= link_to transaction.envelope.name, envelope_transactions_path(transaction.envelope.id) if transaction.envelope.present? %></td>
   <td>
     <%= link_to edit_transaction_path(transaction), id: "edit-transaction-#{transaction.id}" do %>
       <i class="icon-edit"></i>

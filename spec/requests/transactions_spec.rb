@@ -18,6 +18,16 @@ describe 'a visitor viewing the transactions page' do
     page.should have_content(@transaction.memo)
   end
 
+  it 'can filter transaction list by clicking envelope name' do
+    click_link(@envelope.name)
+    page.current_path.should eq(envelope_transactions_path(@envelope.id))
+  end
+
+  it 'can filter transaction list by clicking account name' do
+    click_link(@account.name)
+    page.current_path.should eq(account_transactions_path(@account.id))
+  end
+
   it 'can see a link to create a new transaction' do
     page.should have_link('new transaction')
     click_link 'new transaction'
