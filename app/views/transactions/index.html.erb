@@ -6,7 +6,9 @@
     <th>Payee</th>
     <th>Amount</th>
     <th>Account</th>
+    <%= content_tag :th,  'Account Balance' if params[:account_id].present? %>
     <th>Envelope</th>
+    <%= content_tag :th,  'Envelope Balance' if params[:envelope_id].present? %>
     <th>Actions</th>
   </tr>
   <%= render @transactions %>

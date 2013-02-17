@@ -20,6 +20,8 @@ class Transaction < ActiveRecord::Base
   # ------------------------------------------- Plugins
 
   monetize :amount_cents
+  monetize :current_account_balance_cents
+  monetize :current_envelope_balance_cents
   has_attached_file :attachment
 
   # ------------------------------------------- Validations
@@ -49,6 +51,8 @@ class Transaction < ActiveRecord::Base
           object.save
         end
       end
+      self.update_column :current_envelope_balance_cents, self.envelope.balance_cents if self.envelope.present?
+      self.update_column :current_account_balance_cents, self.account.balance_cents if self.account.present?
     end
 
     def subtract_old_balances

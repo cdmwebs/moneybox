@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130216204742) do
+ActiveRecord::Schema.define(:version => 20130217203420) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -43,18 +43,20 @@ ActiveRecord::Schema.define(:version => 20130216204742) do
 
   create_table "transactions", :force => true do |t|
     t.string   "payee"
-    t.integer  "amount_cents",                               :null => false
-    t.string   "amount_currency",         :default => "USD", :null => false
+    t.integer  "amount_cents",                                      :null => false
+    t.string   "amount_currency",                :default => "USD", :null => false
     t.integer  "account_id"
     t.integer  "envelope_id"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.date     "entry_date",                                 :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+    t.date     "entry_date",                                        :null => false
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.string   "memo"
+    t.integer  "current_account_balance_cents",  :default => 0
+    t.integer  "current_envelope_balance_cents", :default => 0
   end
 
   create_table "users", :force => true do |t|

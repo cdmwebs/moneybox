@@ -28,6 +28,16 @@ describe 'a visitor viewing the transactions page' do
     page.current_path.should eq(account_transactions_path(@account.id))
   end
 
+  it 'can see a running envelope balance when filtered by envelope' do
+    click_link(@envelope.name)
+    find("#transaction_#{@transaction.id}").should have_content(@transaction.current_envelope_balance.format)
+  end
+
+  it 'can see a running account balance when filtered by account' do
+    click_link(@account.name)
+    find("#transaction_#{@transaction.id}").should have_content(@transaction.current_account_balance.format)
+  end
+
   it 'can see a link to create a new transaction' do
     page.should have_link('new transaction')
     click_link 'new transaction'

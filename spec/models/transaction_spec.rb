@@ -35,6 +35,9 @@ describe Transaction do
     it 'after create' do
       @account.balance.should eq(@initial_account_balance + @transaction.amount)
       @envelope.balance.should eq(@initial_envelope_balance + @transaction.amount)
+      @transaction.reload
+      @transaction.current_account_balance.should eq(@account.balance)
+      @transaction.current_envelope_balance.should eq(@envelope.balance)
     end
 
     it 'after updating amount' do
