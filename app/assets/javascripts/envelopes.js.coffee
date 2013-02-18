@@ -10,7 +10,7 @@ $ ->
 
 recalculate = ->
   # from - sum(to)
-  income_ttl = $('#envelope-distribution select#from option:selected').data('balance')
+  income_ttl = $('#envelope-distribution select#from option:selected').data('balance') || 0
   $('#envelope-distribution input.to').each ->
     income_ttl -= $(this).val()
     origin = parseFloat($(this).closest('label').find('span').data('origin') || 0)
