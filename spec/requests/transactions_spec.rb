@@ -180,6 +180,7 @@ describe 'an admin' do
       Account.positive.count.should eq(2)
       Envelope.negative.count.should eq(2)
       Account.negative.count.should eq(1)
+      Transaction.first.memo.should_not be_blank
     end
 
     it 'should be able to replace existing transactions' do

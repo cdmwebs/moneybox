@@ -57,7 +57,7 @@ class TransactionsController < ApplicationController
         CSV.foreach( upload.tempfile, headers: true ) do |row|
           account = Account.find_or_create_by_name(row['account'])
           envelope = Envelope.find_or_create_by_name(row['envelope'])
-          Transaction.create payee: row['payee'], amount: row['amount'], account: account, envelope: envelope, entry_date: row['date']
+          Transaction.create payee: row['payee'], amount: row['amount'], account: account, envelope: envelope, entry_date: row['date'], memo: row['memo']
           ctr += 1
         end
         Account.all.each{ |a| a.update_attribute( :balance, 0) } if params['reset-accounts'].present?
