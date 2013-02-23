@@ -18,9 +18,19 @@ describe 'a visitor viewing the transactions page' do
     page.should have_content(@transaction.memo)
   end
 
+  it 'cannot see envelope transfers in standard view' do
+    envelope2 = FactoryGirl.create :envelope
+    Envelope.transfer(@envelope, envelope2, 20)
+    visit page.current_path
+    page.should have_no_content('Transfer to')
+  end
+
   it 'can filter transaction list by clicking envelope name' do
+    envelope2 = FactoryGirl.create :envelope
+    Envelope.transfer(@envelope, envelope2, 20)
     click_link(@envelope.name)
     page.current_path.should eq(envelope_transactions_path(@envelope.id))
+    page.should have_content('Transfer to')
   end
 
   it 'can filter transaction list by clicking account name' do

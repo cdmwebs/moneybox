@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
           lookup_param = params[:account_id].present? ? params[:account_id] : params[:id]
           Account.find(lookup_param).transactions.order('entry_date DESC').page(params[:page])
         else
-          Transaction.order('entry_date DESC').page(params[:page])
+          Transaction.accounted.order('entry_date DESC').page(params[:page])
         end
       end
     end
