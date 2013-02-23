@@ -58,6 +58,22 @@ describe Transaction do
       @envelope.balance.should eq(@initial_envelope_balance)
     end
 
+    it 'after adding association where none existed previously' do
+      transaction = FactoryGirl.create( :transaction, amount: -10, account: @account, envelope: nil )
+      transaction.update_attributes(envelope: @envelope)
+      @envelope.reload
+      @envelope.balance.should eq(@initial_envelope_balance + transaction.amount + @transaction.amount)
+    end
+
+    it 'after removing association where one existed previously' do
+      transaction = FactoryGirl.create( :transaction, amount: -10, account: @account, envelope: @envelope )
+      @account.balance.should eq(@initial_account_balance + transaction.amount + @transaction.amount)
+      transaction.update_attributes(account: nil)
+      @account.reload
+      @account.balance.should eq(@initial_account_balance + @transaction.amount)
+    end
+
+
     it 'after destroy' do
       @transaction.destroy
       @account.balance.should eq(@initial_account_balance)
