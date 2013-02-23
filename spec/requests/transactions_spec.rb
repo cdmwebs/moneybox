@@ -153,6 +153,14 @@ describe 'a visitor viewing the transactions page' do
     page.should have_link('view attachment')
   end
 
+  it 'can toggle a transaction status' do
+    @transaction.should be_open
+    within("#transaction_#{@transaction.id}") do
+      click_link("toggle-status-transaction-#{@transaction.id}")
+    end
+    @transaction.reload
+    @transaction.should be_cleared
+  end
 
 end
 

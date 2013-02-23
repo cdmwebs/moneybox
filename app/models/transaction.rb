@@ -36,6 +36,16 @@ class Transaction < ActiveRecord::Base
   scope :deposits, where('amount_cents > 0')
   scope :withdrawals, where('amount_cents < 0')
 
+  # ------------------------------------------- Instance Methods
+
+  def open?
+    status == 'open'
+  end
+
+  def cleared?
+    status == 'cleared'
+  end
+
   # ------------------------------------------- Class Methods
   protected
 

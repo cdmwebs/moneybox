@@ -1,3 +1,17 @@
 small{
   color: #999;
 }
+tr.transaction{
+  i{
+    font-size: 1.3em;
+    background: none;
+    margin-right: 1em;
+  }
+  &.cleared{
+    text-decoration: line-through;
+    color: lighten(#000, 70); 
+    a{
+      color: lighten(#000, 70); 
+    }
+  }
+}

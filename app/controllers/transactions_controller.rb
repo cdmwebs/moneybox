@@ -23,6 +23,13 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def toggle_status
+    transaction = Transaction.find params[:id]
+    new_status = transaction.open? ? 'cleared' : 'open'
+    transaction.update_attribute( :status, new_status )
+    redirect_to :back
+  end
+
   def create
     @transaction = Transaction.create params[:transaction]
     if @transaction.valid?

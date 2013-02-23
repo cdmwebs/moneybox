@@ -30,6 +30,12 @@ describe Transaction do
     transaction.entry_date.should eq(Date.today)
   end
 
+  it 'defaults to "open" status' do
+    transaction = FactoryGirl.build( :transaction )
+    transaction.status.should eq('open')
+  end
+
+
   describe 'updates account and envelope balances' do
 
     it 'after create' do
