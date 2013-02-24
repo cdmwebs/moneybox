@@ -3,6 +3,7 @@ class Account < ActiveRecord::Base
   # ------------------------------------------- Associations
 
   has_many :transactions, dependent: :restrict
+  has_many :statements
 
   # ------------------------------------------- Plugins
 

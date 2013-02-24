@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130223173623) do
+ActiveRecord::Schema.define(:version => 20130224141905) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(:version => 20130223173623) do
 
   add_index "settings", ["thing_type", "thing_id", "var"], :name => "index_settings_on_thing_type_and_thing_id_and_var", :unique => true
 
+  create_table "statements", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "start_balance_cents"
+    t.integer  "end_balance_cents"
+    t.integer  "account_id"
+    t.boolean  "reconciled",          :default => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
   create_table "transactions", :force => true do |t|
     t.string   "payee"
     t.integer  "amount_cents",                                       :null => false
@@ -58,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20130223173623) do
     t.integer  "current_account_balance_cents",  :default => 0
     t.integer  "current_envelope_balance_cents", :default => 0
     t.string   "status",                         :default => "open"
+    t.integer  "statement_id"
   end
 
   create_table "users", :force => true do |t|

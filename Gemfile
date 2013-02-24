@@ -44,6 +44,7 @@ group :test do
   gem 'rb-fsevent', :require => false
   gem 'database_cleaner'
   gem 'simplecov', :require => false
+  gem 'shoulda-matchers'
 end
 
 group :production do

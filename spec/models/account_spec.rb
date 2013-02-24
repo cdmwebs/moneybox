@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe Account do
 
+  it { should have_many(:transactions) }
+  it { should have_many(:statements) }
+
   it 'returns records ordered by negative, positive and empty balances' do
     empty_account = FactoryGirl.create( :account, balance: 0 )
     positive_account = FactoryGirl.create( :account, balance: 10 )

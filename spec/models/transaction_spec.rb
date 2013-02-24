@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Transaction do
 
+  it { should belong_to(:envelope) }
+  it { should belong_to(:account) }
+  it { should belong_to(:statement) }
+
   before :each do
     @account = FactoryGirl.create( :account )
     @envelope = FactoryGirl.create( :envelope )
