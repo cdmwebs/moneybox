@@ -25,8 +25,8 @@ class TransactionsController < ApplicationController
 
   def toggle_status
     transaction = Transaction.find params[:id]
-    new_status = transaction.open? ? 'cleared' : 'open'
-    transaction.update_attribute( :status, new_status )
+    transaction.toggle_status
+    transaction.save
     redirect_to :back
   end
 

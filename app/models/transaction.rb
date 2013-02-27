@@ -48,6 +48,18 @@ class Transaction < ActiveRecord::Base
     status == 'cleared'
   end
 
+  def clear
+    status = 'cleared'
+  end
+
+  def open
+    status = 'open'
+  end
+
+  def toggle_status
+    status = open? ? 'cleared' : 'open'
+  end
+
   # ------------------------------------------- Class Methods
   protected
 
