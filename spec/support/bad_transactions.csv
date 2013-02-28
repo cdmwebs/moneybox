@@ -1,6 +1,6 @@
 date,check_num,payee,memo,envelope,account,amount
-"Oct 21, 2011",,Lookout Joe's,Coffee break,Dining,US Bank Credit Card,-2.50
+"Oct 21, 2011",,Lookout Joe's,Coffee break,Dining,US Bank Credit Card,0.00
 "Oct 21, 2011",,Ramundo's Pizzeria and Deli,Dinner,Dining,US Bank Credit Card,-6.00
-"Oct 21, 2011",,Warren and Christa Harrison,Big check from somewhere,,US Bank Checking,"5,000.00"
+"Oct 21, 2011",,,Big check from somewhere,,US Bank Checking,"5,000.00"
 "Oct 22, 2011",,Ikea Food,Small lunch,Dining,US Bank Credit Card,-3.25
 "Oct 22, 2011",,Ikea,,New House,US Bank Credit Card,-239.99

@@ -27,7 +27,7 @@ class Transaction < ActiveRecord::Base
   # ------------------------------------------- Validations
 
   validates :payee, presence: true
-  validates :amount, numericality: true, exclusion: { in: [0] }
+  validates :amount, numericality: true, exclusion: { in: [0.00] }
   validates_attachment :attachment, :content_type => { content_type: "application/pdf" }
 
   # ------------------------------------------- Scopes
@@ -55,10 +55,10 @@ class Transaction < ActiveRecord::Base
     end
 
     def update_balances(direction='up')
-      modifier = direction == 'down' ? -self.amount : self.amount
+      modifier = direction == 'down' ? -self.amount_cents : self.amount_cents
       [self.account, self.envelope].each do |object|
         if object.present?
-          object.balance += modifier
+          object.balance_cents += modifier
           object.save
         end
       end

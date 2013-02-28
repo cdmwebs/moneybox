@@ -61,15 +61,18 @@ class TransactionsController < ApplicationController
           Envelope.delete_all
         end
         ctr = 0
+        errors = []
         CSV.foreach( upload.tempfile, headers: true ) do |row|
           account = Account.find_or_create_by_name(row['account'])
           envelope = Envelope.find_or_create_by_name(row['envelope'])
-          Transaction.create payee: row['payee'], amount: row['amount'], account: account, envelope: envelope, entry_date: row['date'], memo: row['memo']
+          new_transaction = Transaction.create payee: row['payee'], amount: row['amount'], account: account, envelope: envelope, entry_date: row['date'], memo: row['memo']
+          errors << "#{row['date']} - #{row['payee']} - #{row['amount']} (#{new_transaction.errors.messages.inspect})" if ! new_transaction.valid?
           ctr += 1
         end
         Account.all.each{ |a| a.update_attribute( :balance, 0) } if params['reset-accounts'].present?
         Envelope.all.each{ |e| e.update_attribute( :balance, 0) } if params['reset-envelopes'].present?
         flash[:success] = "#{ctr} transactions created, #{Envelope.count} envelopes created and #{Account.count} accounts created"
+        flash[:error] = "<p>There were errors, though:</p><ul><li>#{errors.join('</li><li>')}</li></ul><p>You may want to fix your data and try importing again.</p>" if errors.size > 0
       else
         flash[:error] = "Incorrect file type"
       end

@@ -228,6 +228,15 @@ describe 'an admin' do
       Envelope.empty.count.should eq(Envelope.count)
     end
 
+    it 'should see errors for invalid transactions' do
+      attach_file 'transaction_attachment', "#{Rails.root}/spec/support/bad_transactions.csv"
+      check 'reset-accounts'
+      click_button 'Upload'
+      page.should have_content("can't be blank")
+      page.should have_content('is reserved')
+      page.should have_content('There were errors')
+    end
+
 
   end
 
