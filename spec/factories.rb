@@ -23,4 +23,11 @@ FactoryGirl.define do
     password 'mostsecurepasswordever'
   end
 
+  factory :statement do
+    start_date 1.month.ago
+    end_date 1.day.ago
+    start_balance 0
+    end_balance 0
+  end
+
 end
