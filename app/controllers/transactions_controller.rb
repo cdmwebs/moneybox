@@ -80,6 +80,16 @@ class TransactionsController < ApplicationController
     render 'import'
   end
 
+  def export
+    require 'csv'
+    csv_string = CSV.generate do |csv|
+      Transaction.all.each do |t|
+        csv << [t.entry_date, t.payee, t.memo, t.envelope, t.account, t.amount]
+      end
+    end
+    render text: csv_string
+  end
+
   private
 
     def check_polarity

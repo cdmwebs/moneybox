@@ -24,6 +24,7 @@ Moneybox::Application.routes.draw do
     collection do
       get 'import'
       post 'import'
+      get 'export'
     end
     member do
       put 'toggle_status'

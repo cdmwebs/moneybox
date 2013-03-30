@@ -240,4 +240,9 @@ describe 'an admin' do
 
   end
 
+  it 'should be able to export transactions' do
+    @transactions = FactoryGirl.create_list( :transaction, 5 )
+    visit export_transactions_path
+  end
+
 end
