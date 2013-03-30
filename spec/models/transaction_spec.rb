@@ -39,6 +39,12 @@ describe Transaction do
     transaction.status.should eq('open')
   end
 
+  it 'can toggle status' do
+    @transaction.toggle_status
+    @transaction.reload
+    @transaction.should be_cleared
+  end
+
 
   describe 'updates account and envelope balances' do
 

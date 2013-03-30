@@ -49,15 +49,15 @@ class Transaction < ActiveRecord::Base
   end
 
   def clear
-    status = 'cleared'
+    self.update_attribute :status, 'cleared'
   end
 
   def open
-    status = 'open'
+    self.update_attribute :status, 'open'
   end
 
   def toggle_status
-    status = open? ? 'cleared' : 'open'
+    status == 'open' ? self.clear : self.open
   end
 
   # ------------------------------------------- Class Methods
