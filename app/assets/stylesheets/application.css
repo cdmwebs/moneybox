@@ -11,8 +11,13 @@
  *= require font-awesome
  *= require bootstrap
  *= require bootstrap-datepicker
+ *= require bootstrap-responsive
  *= require_self
  *= require_tree .
  */
 
 a.btn { text-transform: capitalize; }
+
+@media (max-width: 480px) {
+  
+}
