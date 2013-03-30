@@ -57,7 +57,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def toggle_status
-    status == 'open' ? self.clear : self.open
+    self.open? ? self.clear : self.open
   end
 
   # ------------------------------------------- Class Methods

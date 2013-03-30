@@ -45,9 +45,11 @@ group :test do
   gem 'database_cleaner'
   gem 'simplecov', :require => false
   gem 'shoulda-matchers'
+  gem 'rb-inotify', '~> 0.8.8'
 end
 
 group :production do
   gem 'thin'
   gem 'pg'
 end
+gem 'unicorn'

@@ -31,6 +31,10 @@ Moneybox::Application.routes.draw do
     end
   end
 
+  resources :statements do
+    resources :transactions
+  end
+
 
   root to: 'envelopes#index'
 

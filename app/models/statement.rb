@@ -7,7 +7,7 @@ class Statement < ActiveRecord::Base
 
   # ------------------------------------------- Accessors
 
-  attr_accessible :end_balance, :end_date, :start_balance, :start_date, :account, :reconciled
+  attr_accessible :end_balance, :end_date, :start_balance, :start_date, :account, :reconciled, :account_id
 
   # ------------------------------------------- Plugins
 

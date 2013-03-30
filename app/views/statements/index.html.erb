@@ -1,0 +1,13 @@
+<%= link_to 'new statement', new_statement_path, class: 'btn btn-primary new-statement' %>
+<h2>Statements</h2>
+<table class="table table-striped statements">
+  <tr>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Start Balance</th>
+    <th>End Balance</th>
+    <th>Account</th>
+    <th>Reconciled?</th>
+  </tr>
+  <%= render @statements %>
+</table>

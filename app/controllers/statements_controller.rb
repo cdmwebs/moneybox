@@ -1,11 +1,27 @@
 class StatementsController < ApplicationController
 
+  def index
+    @statements = Statement.all
+  end
+
   def new
     @statement = Statement.new
   end
 
+  def show
+    @statement = Statement.find params[:id]
+  end
+
   def create
     @statement = Statement.create(params[:statement])
+    if @statement.valid?
+      flash[:success] = "Statement Created"
+      redirect_to statement_path(@statement)
+    else
+      flash[:error] = "Please see errors, below"
+      render 'new'
+    end
+
   end
 
   def add_transaction
