@@ -41,11 +41,10 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem "guard-rspec"
-  gem 'rb-fsevent', :require => false
   gem 'database_cleaner'
-  gem 'simplecov', :require => false
   gem 'shoulda-matchers'
-  gem 'rb-inotify', '~> 0.8.8'
+  gem 'rb-inotify', '~> 0.8.8', :require => false
+  gem 'rb-fsevent', :require => false
 end
 
 group :production do

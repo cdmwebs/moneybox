@@ -64,8 +64,8 @@ describe "A visitor" do
     to_balance_cents = envelope_to.balance_cents
     visit transfer_envelopes_path
     fill_in 'amount', with: 10
-    select envelope_from.name, from: 'from'
-    select envelope_to.name, from: 'to'
+    select envelope_from.name_and_balance, from: 'from'
+    select envelope_to.name_and_balance, from: 'to'
     click_button 'Transfer'
     envelope_from.reload
     envelope_to.reload

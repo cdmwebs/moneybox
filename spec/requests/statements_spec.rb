@@ -21,6 +21,7 @@ describe 'a visitor' do
   end
 
   it 'can create a new statement' do
+    pending
     click_link 'new statement'
     page.current_path.should eq(new_statement_path)
     fill_in 'statement_start_date', with: 32.days.ago

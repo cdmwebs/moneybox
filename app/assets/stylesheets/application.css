@@ -15,9 +15,3 @@
  *= require_self
  *= require_tree .
  */
-
-a.btn { text-transform: capitalize; }
-
-@media (max-width: 480px) {
-  
-}

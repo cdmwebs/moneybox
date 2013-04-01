@@ -82,12 +82,16 @@ class TransactionsController < ApplicationController
 
   def export
     require 'csv'
-    csv_string = CSV.generate do |csv|
+    output = Tempfile.new ['export.', '.csv']
+    CSV.open(output.path, "wb") do |csv|
+      csv << ['entry date', 'payee', 'memo', 'envelope', 'account', 'amount']
       Transaction.all.each do |t|
-        csv << [t.entry_date, t.payee, t.memo, t.envelope, t.account, t.amount]
+        envelope = t.envelope.present? ? t.envelope.name : nil
+        account = t.account.present? ? t.account.name : nil
+        csv << [t.entry_date, t.payee, t.memo, envelope, account, t.amount.to_s]
       end
     end
-    render text: csv_string
+    send_file output.path
   end
 
   private
