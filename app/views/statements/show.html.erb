@@ -1,3 +1,12 @@
 <h2>Reconcile Statement: <%= @statement.account.name %></h2>
 <h3>Start: <%= nice_date @statement.start_date %> (<%= humanized_money_with_symbol @statement.start_balance %>)</h3>
 <h3>End: <%= nice_date @statement.end_date %> (<%= humanized_money_with_symbol @statement.end_balance %>)</h3>
+<table class="table table-striped transactions">
+  <tr>
+    <th>Date</th>
+    <th>Payee</th>
+    <th>Amount</th>
+    <th>Actions</th>
+  </tr>
+  <%= render partial: 'statements/transaction', collection: @statement.possible_transactions %>
+</table>

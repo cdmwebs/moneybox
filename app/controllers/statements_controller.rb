@@ -24,25 +24,23 @@ class StatementsController < ApplicationController
 
   end
 
-  def add_transaction
-    statement = Statement.find(params[:statement][:id])
-    transaction = Transaction.find(params[:statement][:transaction_id])
-    statement.transactions << transaction
-    statement.save
-    transaction.clear
-    transaction.save
-    redirect_to :back
+  def add_or_remove_transaction
+    @statement = Statement.find(params[:statement_id])
+    transaction = Transaction.find(params[:transaction_id])
+    if @statement.transactions.include? transaction
+      updated_transactions = @statement.transactions.reject { |t| t == transaction }
+      @statement.transactions = updated_transactions
+      transaction.open
+    else
+      @statement.transactions << transaction
+      transaction.clear
+    end
+    @statement.save
+    if request.xhr?
+      render partial: 'statements/transaction', locals: {transaction: transaction}
+    else
+      redirect_to :back
+    end
   end
-
-  def remove_transaction
-    statement = Statement.find(params[:statement][:id])
-    transaction = Transaction.find(params[:statement][:transaction_id])
-    statement.transactions.reject! { |t| t == transaction }
-    statement.save
-    transaction.open
-    transaction.save
-    redirect_to :back
-  end
-
 
 end

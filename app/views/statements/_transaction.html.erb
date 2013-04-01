@@ -1,0 +1,12 @@
+<% logger.debug transaction.inspect %>
+<tr class="transaction <%= transaction.status %>" id="transaction_<%= transaction.id %>">
+  <td><%= transaction.entry_date.to_date %></td>
+  <td><%= transaction.payee %><br>
+    <small><%= transaction.memo %></small></td>
+  <td><%= transaction.amount %></td>
+  <td>
+    <%= link_to toggle_statement_transaction_path(@statement.id, transaction.id), class: 'statement-transaction-toggle', id: "toggle-statement-transaction-#{transaction.id}", method: 'put', remote: true do %>
+      <i class="<%= transaction.open? ? 'icon-ok' : 'icon-refresh' %>"></i>
+    <% end %>
+  </td>
+</tr>
