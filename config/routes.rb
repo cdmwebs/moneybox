@@ -38,5 +38,6 @@ Moneybox::Application.routes.draw do
 
   root to: 'envelopes#index'
   match 'statement/:statement_id/transaction/:transaction_id/toggle' => 'statements#add_or_remove_transaction', as: 'toggle_statement_transaction'
+  match 'statements/:statement_id/totals' => 'statements#totals', as: 'statement_totals'
 
 end

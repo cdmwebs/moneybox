@@ -16,14 +16,10 @@ class Statement < ActiveRecord::Base
 
  # ------------------------------------------- Instance Methods
 
-  def reconciled?
-    reconciled == true
-  end
-
   def possible_transactions
     first_date = (start_date - 3.days).to_date
     last_date = (end_date + 3.days).to_date
-    account.transactions.where('entry_date >= ? AND entry_date <= ?', first_date, last_date).order('entry_date ASC')
+    transactions.unscoped.where('account_id = ?', account.id).where('entry_date >= ? AND entry_date <= ?', first_date, last_date).order('entry_date ASC')
   end
 
   def balance_difference

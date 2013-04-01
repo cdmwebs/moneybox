@@ -43,4 +43,9 @@ class StatementsController < ApplicationController
     end
   end
 
+  def totals
+    @statement = Statement.find(params[:statement_id])
+    render partial: 'totals'
+  end
+
 end
