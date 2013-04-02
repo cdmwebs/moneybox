@@ -17,6 +17,7 @@ class Statement < ActiveRecord::Base
 
   monetize :start_balance_cents
   monetize :end_balance_cents
+  has_attached_file :attachment
 
  # ------------------------------------------- Instance Methods
 
@@ -39,7 +40,7 @@ class Statement < ActiveRecord::Base
   end
 
   def check_reconciled
-    self.update_attribute :reconciled, true if self.reconciled?
+    self.update_column :reconciled, self.reconciled? ? true : false
   end
 
 end

@@ -1,3 +1,25 @@
 .statement-transactions{
   overflow: auto;
 }
+h4.totals{
+  position: relative;
+  span{
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 2.7em;
+    color: rgba(0,100,0,0.8);
+    -moz-transform: rotate(-15deg) translateY(-30px);
+    -webkit-transform: rotate(-15deg) translateY(-30px);
+    -o-transform: rotate(-15deg) translateY(-30px);
+    -ms-transform: rotate(-15deg) translateY(-30px);
+    transform: rotate(-15deg) translateY(-30px);
+  }
+  &.reconciled{
+    color: #999;
+    span{
+      display: inline;
+    }
+  }
+}

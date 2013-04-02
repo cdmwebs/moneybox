@@ -12,6 +12,10 @@ class StatementsController < ApplicationController
     @statement = Statement.find params[:id]
   end
 
+  def edit
+    @statement = Statement.find params[:id]
+  end
+
   def create
     @statement = Statement.create(params[:statement])
     if @statement.valid?

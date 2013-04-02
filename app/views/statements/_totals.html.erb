@@ -1,5 +1,6 @@
-<h4 class="totals pull-right">Starting balance: <%= @statement.start_balance.format %><br />
+<h4 class="totals pull-right <%= 'reconciled' if @statement.reconciled? %>">Starting balance: <%= @statement.start_balance.format %><br />
   Ending balance: <%= @statement.end_balance.format %><br />
   Unreconciled: <%= @statement.unreconciled_amount.format %><br />
   Transactions: <%= @statement.transaction_total.format %>
+  <span>reconciled</span>
 </h4>

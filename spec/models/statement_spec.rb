@@ -24,8 +24,8 @@ describe Statement do
     end
   end
 
-  it 'returns the difference between start and end balances' do
-    @statement.balance_difference.should eq(-30.to_money)
+  it 'returns the unreconciled balance' do
+    @statement.unreconciled_amount.should eq(-30.to_money)
   end
 
   it 'returns to total transaction amount' do

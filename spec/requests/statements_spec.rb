@@ -46,4 +46,19 @@ describe 'a visitor' do
     end
   end
 
+  it 'can reconcile a statement' do
+    Capybara.using_driver(Capybara.javascript_driver) do
+      browser_sign_in
+      visit statement_path(@statement)
+      page.should have_content("Unreconciled: #{@statement.end_balance.format}")
+      @statement.reconciled?.should be_false
+      @statement.possible_transactions.first(3).each do |t|
+        click_link "toggle-statement-transaction-#{t.id}"
+      end
+      page.should have_content("Unreconciled: #{0.to_money.format}")
+      @statement.reload
+      @statement.reconciled?.should be_true
+    end
+  end
+
 end

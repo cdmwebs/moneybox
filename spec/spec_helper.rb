@@ -4,6 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 require 'database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -30,6 +31,12 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  Capybara.register_driver :poltergeist do |app|
+    options = { :inspector => true }
+    Capybara::Poltergeist::Driver.new(app, options)
+  end
+  Capybara.javascript_driver = :poltergeist
+
   config.use_transactional_fixtures = false
 
   config.before :each do
@@ -39,6 +46,8 @@ RSpec.configure do |config|
 
   config.after :each do
     DatabaseCleaner.clean
+    Capybara.reset_sessions!    # Forget the (simulated) browser state
+    Capybara.use_default_driver # Revert Capybara.current_driver to Capybara.default_driver
   end
 
 end

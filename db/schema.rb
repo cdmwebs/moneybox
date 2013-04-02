@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130224141905) do
+ActiveRecord::Schema.define(:version => 20130402145318) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -47,9 +47,13 @@ ActiveRecord::Schema.define(:version => 20130224141905) do
     t.integer  "start_balance_cents"
     t.integer  "end_balance_cents"
     t.integer  "account_id"
-    t.boolean  "reconciled",          :default => false
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.boolean  "reconciled",              :default => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "transactions", :force => true do |t|

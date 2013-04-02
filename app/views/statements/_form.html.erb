@@ -4,5 +4,7 @@
   <%= f.input :end_date, as: :string, input_html: { class: 'datepicker' } %>
   <%= f.input :start_balance, placeholder: '0.00', as: :numeric, input_html: {step: "0.01"} %>
   <%= f.input :end_balance, placeholder: '0.00', as: :numeric, input_html: {step: "0.01"} %>
+  <%= link_to 'view attachment', @statement.attachment.url, target: '_blank' if @statement.attachment.present? %><br>
+  <%= f.file_field :attachment %>
   <p><%= f.button :submit, class: 'btn btn-primary' %></p>
 <% end %>
