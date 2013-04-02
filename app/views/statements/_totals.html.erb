@@ -1,5 +1,5 @@
 <h4 class="totals pull-right">Starting balance: <%= @statement.start_balance.format %><br />
   Ending balance: <%= @statement.end_balance.format %><br />
-  Difference: <%= @statement.balance_difference.format %><br />
+  Unreconciled: <%= @statement.unreconciled_amount.format %><br />
   Transactions: <%= @statement.transaction_total.format %>
 </h4>

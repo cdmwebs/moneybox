@@ -1,16 +1,8 @@
 <tr class="statement " id="statement_<%= statement.id %>">
-  <td><%= statement.start_date.to_date %></td>
-  <td><%= statement.end_date.to_date %></td>
-  <td><%= statement.start_balance %></td>
-  <td><%= statement.end_balance %></td>
-  <td><%= statement.account.name %></td>
-  <td><%= statement.reconciled %></td>
-  <td>
-    <%= link_to edit_statement_path(statement), id: "edit-statement-#{statement.id}" do %>
-      <i class="icon-edit"></i>
-    <% end %>
-    <%= link_to statement_path(statement), id: "delete-statement-#{statement.id}", method: :delete, confirm: 'Are you sure?' do %>
-      <i class="icon-remove"></i>
-    <% end %>
-  </td>
+  <td><%= link_to statement.start_date.to_date, statement_path(statement) %></td>
+  <td><%= link_to statement.end_date.to_date, statement_path(statement) %></td>
+  <td><%= link_to statement.start_balance, statement_path(statement) %></td>
+  <td><%= link_to statement.end_balance, statement_path(statement) %></td>
+  <td><%= link_to statement.account.name, statement_path(statement) %></td>
+  <td><%= link_to statement.reconciled?.to_s, statement_path(statement) %></td>
 </tr>

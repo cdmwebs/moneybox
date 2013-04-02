@@ -8,5 +8,8 @@
     <%= link_to toggle_statement_transaction_path(@statement.id, transaction.id), class: 'statement-transaction-toggle', id: "toggle-statement-transaction-#{transaction.id}", method: 'put', remote: true do %>
       <i class="<%= transaction.open? ? 'icon-ok' : 'icon-refresh' %>"></i>
     <% end %>
+    <%= link_to edit_transaction_path(transaction), id: "edit-transaction-#{transaction.id}" do %>
+      <i class="icon-edit"></i>
+    <% end %>
   </td>
 </tr>

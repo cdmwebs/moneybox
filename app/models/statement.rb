@@ -9,6 +9,10 @@ class Statement < ActiveRecord::Base
 
   attr_accessible :end_balance, :end_date, :start_balance, :start_date, :account, :reconciled, :account_id
 
+  # ------------------------------------------- Callbacks
+
+  after_update :check_reconciled
+
   # ------------------------------------------- Plugins
 
   monetize :start_balance_cents
@@ -22,20 +26,20 @@ class Statement < ActiveRecord::Base
     transactions.unscoped.where('account_id = ?', account.id).where('entry_date >= ? AND entry_date <= ?', first_date, last_date).order('entry_date ASC')
   end
 
-  def balance_difference
-      end_balance - start_balance
-  end
-
   def transaction_total
     transactions.collect{|t| t.amount.to_f}.reduce(0,:+).to_money
   end
 
-  def difference
-    balance_difference - transaction_total
+  def unreconciled_amount
+    end_balance - start_balance - transaction_total
   end
 
   def reconciled?
-    difference == 0
+    unreconciled_amount == 0
+  end
+
+  def check_reconciled
+    self.update_attribute :reconciled, true if self.reconciled?
   end
 
 end
