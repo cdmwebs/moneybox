@@ -23,3 +23,9 @@ To do
 - Drag & drop (for attachments and transfers)
 - Autocomplete for payees
 - Attachment (receipt) previews
+- 
+
+License
+-------
+
+http://wph.mit-license.org/2012
