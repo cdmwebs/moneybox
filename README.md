@@ -23,7 +23,6 @@ To do
 - Drag & drop (for attachments and transfers)
 - Autocomplete for payees
 - Attachment (receipt) previews
-- 
 
 License
 -------
