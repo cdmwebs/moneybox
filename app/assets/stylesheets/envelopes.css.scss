@@ -10,3 +10,21 @@ i.icon-minus-sign{
   font-size: 1.2em;
   padding: 0.5em;
 }
+
+@media (max-width: 767px) {
+  .envelope{
+    &.negative{
+      td{
+        color: #FFF !important;
+        background: #B94A48 !important;
+      }
+    }
+    &.positive{
+      td{
+        color: #FFF !important;
+        background: #468847 !important;
+      }
+    }
+
+  }
+}

@@ -34,6 +34,10 @@ class Envelope < ActiveRecord::Base
     balance.to_f < 0 ? 'badge-important' : balance.to_f > 0 ? 'badge-success' : ''
   end
 
+  def row_style
+    balance.to_f < 0 ? 'negative' : balance.to_f > 0 ? 'positive' : ''
+  end
+
   def balance?
     balance != 0
   end

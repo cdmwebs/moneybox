@@ -17,7 +17,7 @@
           <li><%= link_to 'Transactions', transactions_path %></li>
           <li><%= link_to 'Envelopes', envelopes_path %></li>
           <li><%= link_to 'Accounts', accounts_path %></li>
-          <li><%= link_to 'Statements', statements_path %></li>
+          <li><%= link_to 'Statements', statements_path, class: 'hidden-phone' %></li>
           <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
         </ul>
       </div>
