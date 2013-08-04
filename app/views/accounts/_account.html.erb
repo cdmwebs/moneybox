@@ -1,7 +1,7 @@
 <tr class="account" id="account-<%= account.id %>">
   <td><%= account.name %></td>
   <td><%= content_tag :span, account.balance.format, class: "balance badge #{account.badge_style}" if account.balance? %></td>
-  <td class="hidden-phone">
+  <td class="hidden-tablet">
     <%= link_to edit_account_path(account), id: "edit-account-#{account.id}" do %>
       <i class="icon-edit"></i>
     <% end %>

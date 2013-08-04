@@ -1,7 +1,7 @@
-<tr class="envelope <%= envelope.row_style %> <%= 'hidden-phone' if envelope.income? %>" id="envelope-<%= envelope.id %>">
+<tr class="envelope <%= envelope.row_style %> <%= 'hidden-tablet' if envelope.income? %>" id="envelope-<%= envelope.id %>">
   <td><i class="<%= envelope.income? ? 'icon-plus-sign' : 'icon-minus-sign' %>"></i> <%= envelope.name %></td>
   <td><%= content_tag :span, envelope.balance.format, class: "balance badge #{envelope.badge_style}" if envelope.balance? %></td>
-  <td class="hidden-phone">
+  <td class="hidden-tablet">
     <%= link_to edit_envelope_path(envelope), id: "edit-envelope-#{envelope.id}" do %>
       <i class="icon-edit"></i>
     <% end %>

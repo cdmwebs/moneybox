@@ -1,11 +1,11 @@
 <h2>Accounts</h2>
-<%= link_to 'account transfer', transfer_accounts_path, class: 'btn btn-inverse transfer-accounts hidden-phone' %>
+<%= link_to 'account transfer', transfer_accounts_path, class: 'btn btn-inverse transfer-accounts hidden-tablet' %>
 <table class="table table-striped accounts">
   <tr>
     <th>Name</th>
     <th>Balance</th>
-    <th class="hidden-phone">Actions</th>
+    <th class="hidden-tablet">Actions</th>
   </tr>
   <%= render @accounts %>
 </table>
-<%= link_to 'new account', new_account_path, class: 'btn btn-primary new-account pull-right hidden-phone' %>
+<%= link_to 'new account', new_account_path, class: 'btn btn-primary new-account pull-right hidden-tablet' %>
