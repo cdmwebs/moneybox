@@ -16,10 +16,8 @@
  *= require_tree .
  */
 
- @media (max-width:25em) {
-   @-ms-viewport {
-     width: 320px;
-   }
+ @-ms-viewport {
+   width: 320px;
  }
 
 @media (max-width: 769px) {
