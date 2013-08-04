@@ -30,6 +30,7 @@
     font-weight: normal;
     font-size: 1.5em;
     line-height: 1.7em;
+    padding: 0 0.3em;
   }
   .navbar{
     margin: 0;
@@ -37,4 +38,30 @@
   .well{
     padding: 0;
   }
+  .table-striped tbody > tr{
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .table-striped tbody > tr:nth-child(odd) > td{
+    background: none;
+  }
+  tr.negative, tr.negative td{
+    color: #FFF;
+    background: #B94A48;
+    border: none;
+  }
+  tr.positive, tr.positive td{
+    color: #FFF;
+    background: #468847;
+    border: none;
+  }
+  tr.negative:nth-child(odd), tr.negative:nth-child(odd) td{
+    background: #b76f6e;
+  }
+  tr.positive:nth-child(odd), tr.positive:nth-child(odd) td{
+    background: #6c876c;
+  }
+  tr.negative a, tr.positive a, tr.positive small, tr.negative small{
+    color: #FFF;
+  }
+
 }

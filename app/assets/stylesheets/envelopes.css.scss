@@ -13,18 +13,8 @@ i.icon-minus-sign{
 
 @media (max-width: 767px) {
   .envelope{
-    &.negative{
-      td{
-        color: #FFF !important;
-        background: #B94A48 !important;
-      }
+    i{
+      display: none;
     }
-    &.positive{
-      td{
-        color: #FFF !important;
-        background: #468847 !important;
-      }
-    }
-
   }
 }

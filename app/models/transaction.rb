@@ -60,6 +60,10 @@ class Transaction < ActiveRecord::Base
     self.open? ? self.clear : self.open
   end
 
+  def row_style
+    self.amount < 0 ? 'negative' : 'positive'
+  end
+
   # ------------------------------------------- Class Methods
   protected
 

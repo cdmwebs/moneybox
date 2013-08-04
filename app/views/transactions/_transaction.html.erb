@@ -1,14 +1,14 @@
-<tr class="transaction <%= transaction.status %>" id="transaction_<%= transaction.id %>">
-  <td><%= transaction.entry_date.to_date %></td>
-  <td><%= transaction.payee %><br>
+<tr class="transaction <%= transaction.status %> <%= transaction.row_style %>" id="transaction_<%= transaction.id %>">
+  <td class="date"><%= transaction.entry_date.to_date %></td>
+  <td class="payee"><%= transaction.payee %><br>
     <small><%= transaction.memo %></small></td>
-  <td><%= transaction.amount %></td>
-  <td><%= link_to transaction.account.name, account_transactions_path(transaction.account.id)  if transaction.account.present? %></td>
+  <td class="amount"><%= transaction.amount %></td>
+  <td class="account"><%= link_to transaction.account.name, account_transactions_path(transaction.account.id)  if transaction.account.present? %></td>
   <%= content_tag :td, transaction.current_account_balance.format if params[:account_id].present? %>
-  <td><%= link_to transaction.envelope.name, envelope_transactions_path(transaction.envelope.id) if transaction.envelope.present? %></td>
+  <td class="envelope"><%= link_to transaction.envelope.name, envelope_transactions_path(transaction.envelope.id) if transaction.envelope.present? %></td>
   <%= content_tag :td, transaction.current_envelope_balance.format if params[:envelope_id].present? %>
-  <td>
-    <%= link_to toggle_status_transaction_path(transaction), id: "toggle-status-transaction-#{transaction.id}", method: 'put' do %>
+  <td class="actions">
+    <%= link_to toggle_status_transaction_path(transaction), class: 'hidden-phone', id: "toggle-status-transaction-#{transaction.id}", method: 'put' do %>
       <i class="<%= transaction.open? ? 'icon-ok' : 'icon-refresh' %>"></i>
     <% end %>
     <%= link_to edit_transaction_path(transaction), id: "edit-transaction-#{transaction.id}" do %>

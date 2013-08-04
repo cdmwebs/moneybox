@@ -1,4 +1,4 @@
-<%= simple_form_for @envelope do |f| %>
+<%= simple_form_for @envelope, do |f| %>
   <%= f.input :name %>
   <%= f.input :income %>
   <%= f.input :balance, as: :numeric, input_html: {step: "0.01"} %>

@@ -6,7 +6,7 @@
   <%= f.association :envelope, collection: Envelope.ordered, label_method: :name_and_balance %>
   <%= f.association :account, collection: Account.ordered %>
   <%= f.input :memo %>
-  <%= link_to 'view attachment', @transaction.attachment.url, target: '_blank' if @transaction.attachment.present? %><br>
-  <%= f.file_field :attachment %>
+  <%= link_to 'view attachment', @transaction.attachment.url, class: 'hidden-phone', target: '_blank' if @transaction.attachment.present? %><br>
+  <%= f.file_field :attachment, class: 'hidden-phone' %>
   <p><%= f.button :submit, class: 'btn btn-primary' %></p>
 <% end %>
