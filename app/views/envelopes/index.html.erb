@@ -1,12 +1,12 @@
 <h2>Envelopes</h2>
-<%= link_to 'envelope transfer', transfer_envelopes_path, class: 'btn btn-inverse transfer-envelopes hidden-tablet' %>
-<%= link_to 'fill envelopes', fill_envelopes_path, class: 'btn btn-inverse fill-envelopes hidden-tablet' %>
+<%= link_to 'envelope transfer', transfer_envelopes_path, class: 'btn btn-inverse transfer-envelopes hidden-phone' %>
+<%= link_to 'fill envelopes', fill_envelopes_path, class: 'btn btn-inverse fill-envelopes hidden-phone' %>
 <table class="table table-striped envelopes">
   <tr>
     <th>Name</th>
     <th>Balance</th>
-    <th class="hidden-tablet">Actions</th>
+    <th class="hidden-phone">Actions</th>
   </tr>
   <%= render @envelopes %>
 </table>
-<%= link_to 'new envelope', new_envelope_path, class: 'btn btn-primary new-envelope pull-right  hidden-tablet' %>
+<%= link_to 'new envelope', new_envelope_path, class: 'btn btn-primary new-envelope pull-right  hidden-phone' %>
