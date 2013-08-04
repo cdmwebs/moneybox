@@ -15,6 +15,9 @@
  *= require_self
  *= require_tree .
  */
+@-ms-viewport {
+  width: device-width;
+}
 
 @media (max-width: 767px) {
   body{
